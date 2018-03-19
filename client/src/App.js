@@ -6,7 +6,9 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { 
+    this.state = {
+      // trigger when all fetches have run
+      fetchCheck: false,
       // altcoin per bitcoin value
       altPerBtc: {
         dash: 0,
@@ -107,14 +109,16 @@ class App extends Component {
     }
     	// bind btcCoinDesk and renderChart functions
 		this.btcCoinDesk = this.btcCoinDesk.bind(this)
-		// this.renderChart = this.renderChart.bind(this)
+    // this.renderChart = this.renderChart.bind(this)
+    this.sendToDb = this.sendToDb.bind(this)
   }
   componentWillMount() {
-    this.btcCoinDesk()    
-    }
+    this.btcCoinDesk()  
+    
+  }
   
     // first API fetch, get BTC USD via CoinDesk API
-    btcCoinDesk() {
+  btcCoinDesk() {
       fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json', {
         method: 'GET'
       }).then(res => res.json())
@@ -375,7 +379,7 @@ class App extends Component {
       this.ltcKraken()
     }
   
-    // tenth API fetch, get LTC EUR data via Kraken
+    // final API fetch, get LTC EUR data via Kraken
     ltcKraken() {
       fetch('https://api.kraken.com/0/public/Ticker?pair=XLTCZUSD', {
         method: 'GET',
@@ -398,6 +402,7 @@ class App extends Component {
         let actualValue = parseFloat(ltcValueContainer)
         // set state to numbers
         this.setState({
+          fetchCheck: true,
           altPerBtc: {
             dash: dashPerBtc,
             eth: ethPerBtc,
@@ -415,10 +420,28 @@ class App extends Component {
         })
         // trigger chart render function
         // this.renderChart()
-    }
+  }
+  
+  sendToDb() {
+    let data = this.state
+    let lastFetch = this.state.fetchCheck
+    if (lastFetch === true) {
+      console.log(data)
+      fetch('/api/crypto', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(data),
+      }).then(res => res.json())
+      .catch(err => console.log(err))
+    } 
+  }
+
 
   render() {
-    console.log(this)
+    this.sendToDb()
+    // console.log(this)
     return (
       <div>
         <h1>hello world</h1>
