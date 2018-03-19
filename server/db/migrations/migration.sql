@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS tracked_data;
 CREATE TABLE IF NOT EXISTS tracked_data(
     id SERIAL PRIMARY KEY,
+    -- track when data was collected
+    time_made BIGINT,
     -- alt per btc values
     dash_per_btc INT,
     eth_per_btc INT,
