@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 })
 
 const cryptoRouter = require('./routes/crypto-routes')
-app.use('/crypto', cryptoRouter)
+app.use('/api/crypto', cryptoRouter)
 
 // set error handler
 app.use('*', (req, res) => {
