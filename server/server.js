@@ -19,9 +19,6 @@ app.use(cookieParser())
 // set logger
 app.use(logger('dev'))
 
-// set static files
-app.use(express.static(path.join(__dirname, '../../client/build')))
-
 // set and initiate routes
 const router = express.Router()
 app.use(router)
@@ -33,6 +30,11 @@ app.listen(app.get('port'), () => {
 })
 
 // set routes here
+app.use(express.static(path.join(__dirname, '../../client/build')))
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+})
+
 const cryptoRouter = require('./routes/crypto-routes')
 app.use('/crypto', cryptoRouter)
 

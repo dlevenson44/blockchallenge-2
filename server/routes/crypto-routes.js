@@ -1,6 +1,6 @@
 // import dependencies
 const express = require('express')
-const cryptoController = require('../controllers/crypto-controllers')
+const cryptoController = require('../controllers/crypto-controller')
 
 // set router variable
 const cryptoRouter = express.Router()
