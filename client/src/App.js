@@ -107,7 +107,7 @@ class App extends Component {
     }
     	// bind btcCoinDesk and renderChart functions
 		this.btcCoinDesk = this.btcCoinDesk.bind(this)
-		this.renderChart = this.renderChart.bind(this)
+		// this.renderChart = this.renderChart.bind(this)
   }
   componentWillMount() {
     this.btcCoinDesk()    
