@@ -33,7 +33,8 @@ app.listen(app.get('port'), () => {
 })
 
 // set routes here
-
+const cryptoRouter = require('./routes/crypto-routes')
+app.use('/crypto', cryptoRouter)
 
 // set error handler
 app.use('*', (req, res) => {
