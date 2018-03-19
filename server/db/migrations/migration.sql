@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS tracked_data
+DROP TABLE IF EXISTS tracked_data;
 CREATE TABLE IF NOT EXISTS tracked_data(
     id SERIAL PRIMARY KEY,
     -- alt per btc values
