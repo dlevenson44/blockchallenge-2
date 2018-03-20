@@ -311,11 +311,6 @@ class App extends Component {
       }).then(res => res.json())
       .then(res => {
         this.setState({          
-          altPerBtc: {
-            dash: dashPerBtc,
-            eth: ethPerBtc,
-            ltc: ltcPerBtc
-          },
           ltcKraken: {
             eur: res.result.XLTCZUSD.c[0],
             trends: {
@@ -338,9 +333,6 @@ class App extends Component {
         },
         method: 'POST',
         body: JSON.stringify({
-          dash_per_btc: this.state.altPerBtc.dash,
-          eth_per_btc: this.state.altPerBtc.eth,
-          ltc_per_btc: this.state.altPerBtc.ltc,
           btc_usd: this.state.btcValue,
           btc_one_hour: this.state.btcCapCoin.oneHour,
           btc_24_hours: this.state.btcCapCoin.oneDay,

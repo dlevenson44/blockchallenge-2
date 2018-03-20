@@ -5,7 +5,7 @@ const Crypto = require('../models/Crypto')
 const cryptoController = {}
 
 // pull all entries from table
-cryptoController.index = (req, res) => {
+cryptoController.index = (req, res, next) => {
     Crypto.findAll()
     .then(crypto => {
         res.json({
@@ -22,10 +22,6 @@ cryptoController.create = (req, res) => {
     Crypto.create({
         // time made
         time_made: Date.now(),
-        // alt per btc alues
-        dash_per_btc: req.body.dash_per_btc,
-        eth_per_btc: req.body.eth_per_btc,
-        ltc_per_btc: req.body.ltc_per_btc,
         // btc data
         btc_usd: req.body.btc_usd,
         btc_us_high: req.body.btc_us_high,
