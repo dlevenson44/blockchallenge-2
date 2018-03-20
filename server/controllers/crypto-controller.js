@@ -33,6 +33,7 @@ cryptoController.create = (req, res) => {
         btc_eur: req.body.btc_eur,
         btc_eur_high: req.body.btc_eur_high,
         btc_eur_low: req.body.btc_eur_low,
+        btc_trades: req.body.btc_trades,
         btc_one_hour: req.body.btc_one_hour,
         btc_24_hours: req.body.btc_24_hours,
         btc_7_days: req.body.btc_7_days,

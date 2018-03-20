@@ -13,7 +13,7 @@ Crypto.findAll = () => {
 Crypto.create = (crypto) => {
     return db.one(`
         INSERT INTO tracked_data
-        (time_made, dash_per_btc, eth_per_btc, ltc_per_btc, btc_usd, btc_us_high, btc_us_low, btc_eur, btc_eur_high, btc_eur_low, btc_one_hour, btc_24_hours, btc_7_days,
+        (time_made, dash_per_btc, eth_per_btc, ltc_per_btc, btc_usd, btc_us_high, btc_us_low, btc_eur, btc_eur_high, btc_eur_low, btc_trades, btc_one_hour, btc_24_hours, btc_7_days,
         dash_usd, dash_us_high, dash_us_low, dash_eur, dash_eur_high, dash_eur_low, dash_trades, dash_one_hour, dash_24_hours, dash_7_days,
         eth_usd, eth_us_high, eth_us_low, eth_eur, eth_eur_high, eth_eur_low, eth_trades, eth_one_hour, eth_24_hours, eth_7_days,
         ltc_usd, ltc_us_high, ltc_us_low, ltc_eur, ltc_eur_high, ltc_eur_low, ltc_trades, ltc_one_hour, ltc_24_hours, ltc_7_days)

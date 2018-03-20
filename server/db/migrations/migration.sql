@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS tracked_data(
     btc_eur INT,
     btc_eur_high INT,
     btc_eur_low INT,
+    btc_trades INT,
     btc_one_hour INT,
     btc_24_hours INT,
     btc_7_days INT,
