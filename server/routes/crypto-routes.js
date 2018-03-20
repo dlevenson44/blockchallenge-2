@@ -6,7 +6,7 @@ const cryptoController = require('../controllers/crypto-controller')
 const cryptoRouter = express.Router()
 
 // set routes
-cryptoRouter.get('/', cryptoController.index)
+cryptoRouter.get('/', cryptoController.latest)
 cryptoRouter.post('/', cryptoController.create)
 
 module.exports = cryptoRouter
