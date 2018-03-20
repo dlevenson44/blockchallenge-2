@@ -6,6 +6,7 @@ import './App.css';
 // import components
 import BtcController from './components/BtcController'
 import DashController from './components/DashController'
+import EthController from './components/EthController'
 
 class App extends Component {
   constructor(props) {
@@ -390,6 +391,7 @@ class App extends Component {
         <h1>hello world</h1>
         <BtcController />
         <DashController />
+        <EthController />
       </div>
     );
   }
