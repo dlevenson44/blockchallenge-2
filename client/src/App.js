@@ -13,11 +13,11 @@ class App extends Component {
       // trigger when all fetches have run
       fetchCheck: false,
       // altcoin per bitcoin value
-      altPerBtc: {
-        dash: 0,
-        eth: 0,
-        ltc: 0
-      },
+      // altPerBtc: {
+      //   dash: 0,
+      //   eth: 0,
+      //   ltc: 0
+      // },
       // bitcoin/usd value
       btcValue: 0,
       // bitcoin market trends
@@ -404,8 +404,7 @@ class App extends Component {
         // // convert new string to number type
         // let actualValue = parseFloat(ltcValueContainer)
         // set state to numbers
-        this.setState({
-          fetchCheck: true,
+        this.setState({          
           altPerBtc: {
             dash: dashPerBtc,
             eth: ethPerBtc,
@@ -418,7 +417,8 @@ class App extends Component {
               high: res.result.XLTCZUSD.h[1],
               trades: res.result.XLTCZUSD.t[1]
             }
-          }
+          },
+          fetchCheck: true
         })
         })
         // trigger chart render function
@@ -426,9 +426,8 @@ class App extends Component {
   }
   
   sendToDb() {
-    let data = this.state
-    let lastFetch = this.state.fetchCheck
-    if (lastFetch === true) {      
+    // let lastFetch = this.state.fetchCheck
+    if (this.state.fetchCheck === true) {      
       fetch('/api/crypto', {
         headers: {
           'Content-Type': 'application/json',
@@ -449,9 +448,9 @@ class App extends Component {
           btc_us_high: this.state.btcPolo.high24hr,
           btc_us_low: this.state.btcPolo.low24hr,
           dash_usd: this.state.dashCapCoin.usd,
-          dash_one_hour: this.state.dashCapCoin.oneHour,
-          dash_24_hours: this.state.dashCapCoin.oneDay,
-          dash_7_days: this.state.dashCapCoin.oneWeek,
+          dash_one_hour: this.state.dashCapCoin.trends.oneHour,
+          dash_24_hours: this.state.dashCapCoin.trends.oneDay,
+          dash_7_days: this.state.dashCapCoin.trends.oneWeek,
           dash_eur: this.state.dashKraken.eur,
           dash_eur_low: this.state.dashKraken.trends.low,
           dash_eur_high: this.state.dashKraken.trends.high,
@@ -459,9 +458,9 @@ class App extends Component {
           dash_us_high: this.state.dashPolo.high24hr,
           dash_us_low: this.state.dashPolo.low24hr,
           eth_usd: this.state.ethCapCoin.usd,
-          eth_one_hour: this.state.ethCapCoin.oneHour,
-          eth_24_hours: this.state.ethCapCoin.oneDay,
-          eth_7_days: this.state.ethCapCoin.oneWeek,
+          eth_one_hour: this.state.ethCapCoin.trends.oneHour,
+          eth_24_hours: this.state.ethCapCoin.trends.oneDay,
+          eth_7_days: this.state.ethCapCoin.trends.oneWeek,
           eth_eur: this.state.ethKraken.eur,
           eth_eur_low: this.state.ethKraken.trends.low,
           eth_eur_high: this.state.ethKraken.trends.high,
@@ -469,9 +468,9 @@ class App extends Component {
           eth_us_high: this.state.ethPolo.high24hr,
           eth_us_low: this.state.ethPolo.low24hr,
           ltc_usd: this.state.ltcCapCoin.usd,
-          ltc_one_hour: this.state.ltcCapCoin.oneHour,
-          ltc_24_hours: this.state.ltcCapCoin.oneDay,
-          ltc_7_days: this.state.ltcCapCoin.oneWeek,
+          ltc_one_hour: this.state.ltcCapCoin.trends.oneHour,
+          ltc_24_hours: this.state.ltcCapCoin.trends.oneDay,
+          ltc_7_days: this.state.ltcCapCoin.trends.oneWeek,
           ltc_eur: this.state.ltcKraken.eur,
           ltc_eur_low: this.state.ltcKraken.trends.low,
           ltc_eur_high: this.state.ltcKraken.trends.high,
@@ -488,7 +487,9 @@ class App extends Component {
 
 
   render() {
-    this.sendToDb()
+    if (this.state.fetchCheck === true) {
+      this.sendToDb()
+    }
     // console.log(this)
     return (
       <div>
