@@ -11,7 +11,7 @@ Crypto.findAll = () => {
 
 // find most recent entry
 Crypto.findRecent = () => {
-    return db.query(`SELECT TOP 1 * FROM tracked_data ORDER BY id DESC`)
+    return db.query(`SELECT * FROM tracked_data ORDER BY id DESC LIMIT 1`)
 }
 
 // create new entry
