@@ -46,6 +46,7 @@ class BtcController extends Component {
 
     render() {
         this.getBtcData()
+        // console.log(this.state)
         return(
             <div>
                 <h1>hello</h1>
