@@ -124,19 +124,19 @@ class App extends Component {
       }).then(res => res.json())
       .then(res => {
           // convert string to number data type logic
-          let btcValueContainer = ''
-          let fetchBtcValue = (res.bpi.USD.rate)
-          for(let i = 0; i < fetchBtcValue.length - 1; i++ ) {
-            // filter out comma's for larger amounts
-            if (fetchBtcValue[i] !== (",")){
-            btcValueContainer += fetchBtcValue[i]
-            }	
-          }
-          // convert returned string into number
-          let actualValue = parseFloat(btcValueContainer)
+          // let btcValueContainer = ''
+          // let fetchBtcValue = (res.bpi.USD.rate)
+          // for(let i = 0; i < fetchBtcValue.length - 1; i++ ) {
+          //   // filter out comma's for larger amounts
+          //   if (fetchBtcValue[i] !== (",")){
+          //   btcValueContainer += fetchBtcValue[i]
+          //   }	
+          // }
+          // // convert returned string into number
+          // let actualValue = parseFloat(btcValueContainer)
           // set state to nuber value
           this.setState({
-              btcValue: actualValue,
+              btcValue: res.bpi.USD.rate,
         })
       })
       // trigger next api call
@@ -221,20 +221,20 @@ class App extends Component {
       }).then(res => res.json())
       .then(res => {
         // convert string to number logic
-        let dashValueContainer = ''
-        let dashValue = res[0].price_usd
-        for(let i = 0; i < dashValue.length -1; i++) {
-          // filter out commas from new string
-          if (dashValue[i] !== (",")) {
-            dashValueContainer += dashValue[i]
-          }
-        }
-        // convert string to number type
-        let actualValue = parseFloat(dashValueContainer)
+        // let dashValueContainer = ''
+        // let dashValue = res[0].price_usd
+        // for(let i = 0; i < dashValue.length -1; i++) {
+        //   // filter out commas from new string
+        //   if (dashValue[i] !== (",")) {
+        //     dashValueContainer += dashValue[i]
+        //   }
+        // }
+        // // convert string to number type
+        // let actualValue = parseFloat(dashValueContainer)
         // set state to number values
         this.setState({                
           dashCapCoin: {
-            usd: actualValue,
+            usd: res[0].price_usd,
             trends: {
               oneHour: res[0].percent_change_1h,
               oneDay: res[0].percent_change_24h,
@@ -254,20 +254,20 @@ class App extends Component {
       }).then(res => res.json())
       .then(res => {
         // convert string data to numeric
-        let dashValueContainer = ''
-        let dashValue = res.result.DASHEUR.c[0]
-        for(let i = 0; i < dashValue.length - 1; i++) {
-          // filter out commas from new string
-          if(dashValue[i] !== (",")) {
-            dashValueContainer += dashValue[i]
-          }
-        }
-        // convert new string to number type
-        let actualValue = parseFloat(dashValueContainer)
+        // let dashValueContainer = ''
+        // let dashValue = res.result.DASHEUR.c[0]
+        // for(let i = 0; i < dashValue.length - 1; i++) {
+        //   // filter out commas from new string
+        //   if(dashValue[i] !== (",")) {
+        //     dashValueContainer += dashValue[i]
+        //   }
+        // }
+        // // convert new string to number type
+        // let actualValue = parseFloat(dashValueContainer)
         // set state to number values
         this.setState({
           dashKraken: {
-            eur: actualValue,
+            eur: res.result.DASHEUR.c[0],
             trends: {
               low: res.result.DASHEUR.l[1],
               high: res.result.DASHEUR.h[1],
@@ -287,20 +287,20 @@ class App extends Component {
       }).then(res => res.json())
       .then(res => {
         // convert string to number logic
-        let ethValueContainer = ''
-        let ethValue = res[0].price_usd
-        for(let i = 0; i < ethValue.length - 1; i++ ) {
-          // filter commas out of new string
-          if(ethValue[i] !== (",")) {
-            ethValueContainer += ethValue[i]
-          }
-        }
-        // convert new string to number
-        let actualValue = parseFloat(ethValueContainer)
+        // let ethValueContainer = ''
+        // let ethValue = res[0].price_usd
+        // for(let i = 0; i < ethValue.length - 1; i++ ) {
+        //   // filter commas out of new string
+        //   if(ethValue[i] !== (",")) {
+        //     ethValueContainer += ethValue[i]
+        //   }
+        // }
+        // // convert new string to number
+        // let actualValue = parseFloat(ethValueContainer)
         // set state to number value
         this.setState({                
           ethCapCoin: {
-            usd: actualValue,
+            usd: res[0].price_usd,
             trends: {
               oneHour: res[0].percent_change_1h,
               oneDay: res[0].percent_change_24h,
@@ -320,20 +320,20 @@ class App extends Component {
       }).then(res => res.json())
       .then(res => {
         // convert string to number logic
-        let ethValueContainer = ''
-        let ethValue = res.result.XETHZEUR.c[0]
-        for(let i = 0; i < ethValue.length - 1; i++ ) {
-          // filter commas out from new string
-          if(ethValue[i] !== (",")) {
-            ethValueContainer += ethValue[i]
-          }
-        }
-        // convert new string to number type
-        let actualValue = parseFloat(ethValueContainer)
+        // let ethValueContainer = ''
+        // let ethValue = res.result.XETHZEUR.c[0]
+        // for(let i = 0; i < ethValue.length - 1; i++ ) {
+        //   // filter commas out from new string
+        //   if(ethValue[i] !== (",")) {
+        //     ethValueContainer += ethValue[i]
+        //   }
+        // }
+        // // convert new string to number type
+        // let actualValue = parseFloat(ethValueContainer)
         // set state to number
         this.setState({
           ethKraken: {
-            eur: actualValue,
+            eur: res.result.XETHZEUR.c[0],
             trends: {
               low: res.result.XETHZEUR.l[1],
               high: res.result.XETHZEUR.h[1],
@@ -353,20 +353,20 @@ class App extends Component {
       }).then(res => res.json())
       .then(res => {
         // convert string to number logic
-        let ltcValueContainer = ''
-        let ltcValue = res[0].price_usd
-        for(let i = 0; i < ltcValue.length - 1; i ++ ) {
-          // filter commas out of new string
-          if (ltcValue[i] !== (",")) {
-            ltcValueContainer += ltcValue[i]
-          }
-        }
-        // convert new string to number type
-        let actualValue = parseFloat(ltcValueContainer)
+        // let ltcValueContainer = ''
+        // let ltcValue = res[0].price_usd
+        // for(let i = 0; i < ltcValue.length - 1; i ++ ) {
+        //   // filter commas out of new string
+        //   if (ltcValue[i] !== (",")) {
+        //     ltcValueContainer += ltcValue[i]
+        //   }
+        // }
+        // // convert new string to number type
+        // let actualValue = parseFloat(ltcValueContainer)
         // set state to number
         this.setState({                
           ltcCapCoin: {
-            usd: actualValue,
+            usd: res[0].price_usd,
             trends: {
               oneHour: res[0].percent_change_1h,
               oneDay: res[0].percent_change_24h,
@@ -390,16 +390,16 @@ class App extends Component {
         let ethPerBtc = (this.state.btcValue / this.state.ethCapCoin.usd)
         let ltcPerBtc = (this.state.btcValue / this.state.ltcCapCoin.usd)
         // convert string to number logic
-        let ltcValueContainer = ''
-        let ltcValue = res.result.XLTCZUSD.c[0]
-        for(let i = 0; i < ltcValue.length - 1; i ++ ) {
-          // filter commas out of string
-          if (ltcValue[i] !== (",")) {
-            ltcValueContainer += ltcValue[i]
-          }
-        }
-        // convert new string to number type
-        let actualValue = parseFloat(ltcValueContainer)
+        // let ltcValueContainer = ''
+        // let ltcValue = res.result.XLTCZUSD.c[0]
+        // for(let i = 0; i < ltcValue.length - 1; i ++ ) {
+        //   // filter commas out of string
+        //   if (ltcValue[i] !== (",")) {
+        //     ltcValueContainer += ltcValue[i]
+        //   }
+        // }
+        // // convert new string to number type
+        // let actualValue = parseFloat(ltcValueContainer)
         // set state to numbers
         this.setState({
           fetchCheck: true,
@@ -409,7 +409,7 @@ class App extends Component {
             ltc: ltcPerBtc
           },
           ltcKraken: {
-            eur: actualValue,
+            eur: res.result.XLTCZUSD.c[0],
             trends: {
               low: res.result.XLTCZUSD.l[1],
               high: res.result.XLTCZUSD.h[1],
