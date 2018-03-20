@@ -12,12 +12,6 @@ class App extends Component {
     this.state = {
       // trigger when all fetches have run
       fetchCheck: false,
-      // altcoin per bitcoin value
-      // altPerBtc: {
-      //   dash: 0,
-      //   eth: 0,
-      //   ltc: 0
-      // },
       // bitcoin/usd value
       btcValue: 0,
       // bitcoin market trends
@@ -126,18 +120,6 @@ class App extends Component {
         method: 'GET'
       }).then(res => res.json())
       .then(res => {
-          // convert string to number data type logic
-          // let btcValueContainer = ''
-          // let fetchBtcValue = (res.bpi.USD.rate)
-          // for(let i = 0; i < fetchBtcValue.length - 1; i++ ) {
-          //   // filter out comma's for larger amounts
-          //   if (fetchBtcValue[i] !== (",")){
-          //   btcValueContainer += fetchBtcValue[i]
-          //   }	
-          // }
-          // // convert returned string into number
-          // let actualValue = parseFloat(btcValueContainer)
-          // set state to nuber value
           this.setState({
               btcValue: res.bpi.USD.rate,
         })
@@ -223,18 +205,6 @@ class App extends Component {
         method: 'GET',
       }).then(res => res.json())
       .then(res => {
-        // convert string to number logic
-        // let dashValueContainer = ''
-        // let dashValue = res[0].price_usd
-        // for(let i = 0; i < dashValue.length -1; i++) {
-        //   // filter out commas from new string
-        //   if (dashValue[i] !== (",")) {
-        //     dashValueContainer += dashValue[i]
-        //   }
-        // }
-        // // convert string to number type
-        // let actualValue = parseFloat(dashValueContainer)
-        // set state to number values
         this.setState({                
           dashCapCoin: {
             usd: res[0].price_usd,
@@ -256,18 +226,6 @@ class App extends Component {
         method: 'GET',
       }).then(res => res.json())
       .then(res => {
-        // convert string data to numeric
-        // let dashValueContainer = ''
-        // let dashValue = res.result.DASHEUR.c[0]
-        // for(let i = 0; i < dashValue.length - 1; i++) {
-        //   // filter out commas from new string
-        //   if(dashValue[i] !== (",")) {
-        //     dashValueContainer += dashValue[i]
-        //   }
-        // }
-        // // convert new string to number type
-        // let actualValue = parseFloat(dashValueContainer)
-        // set state to number values
         this.setState({
           dashKraken: {
             eur: res.result.DASHEUR.c[0],
@@ -289,18 +247,6 @@ class App extends Component {
         method: 'GET',
       }).then(res => res.json())
       .then(res => {
-        // convert string to number logic
-        // let ethValueContainer = ''
-        // let ethValue = res[0].price_usd
-        // for(let i = 0; i < ethValue.length - 1; i++ ) {
-        //   // filter commas out of new string
-        //   if(ethValue[i] !== (",")) {
-        //     ethValueContainer += ethValue[i]
-        //   }
-        // }
-        // // convert new string to number
-        // let actualValue = parseFloat(ethValueContainer)
-        // set state to number value
         this.setState({                
           ethCapCoin: {
             usd: res[0].price_usd,
@@ -322,18 +268,6 @@ class App extends Component {
         method: 'GET',
       }).then(res => res.json())
       .then(res => {
-        // convert string to number logic
-        // let ethValueContainer = ''
-        // let ethValue = res.result.XETHZEUR.c[0]
-        // for(let i = 0; i < ethValue.length - 1; i++ ) {
-        //   // filter commas out from new string
-        //   if(ethValue[i] !== (",")) {
-        //     ethValueContainer += ethValue[i]
-        //   }
-        // }
-        // // convert new string to number type
-        // let actualValue = parseFloat(ethValueContainer)
-        // set state to number
         this.setState({
           ethKraken: {
             eur: res.result.XETHZEUR.c[0],
@@ -355,18 +289,6 @@ class App extends Component {
         method: 'GET',
       }).then(res => res.json())
       .then(res => {
-        // convert string to number logic
-        // let ltcValueContainer = ''
-        // let ltcValue = res[0].price_usd
-        // for(let i = 0; i < ltcValue.length - 1; i ++ ) {
-        //   // filter commas out of new string
-        //   if (ltcValue[i] !== (",")) {
-        //     ltcValueContainer += ltcValue[i]
-        //   }
-        // }
-        // // convert new string to number type
-        // let actualValue = parseFloat(ltcValueContainer)
-        // set state to number
         this.setState({                
           ltcCapCoin: {
             usd: res[0].price_usd,
@@ -388,22 +310,6 @@ class App extends Component {
         method: 'GET',
       }).then(res => res.json())
       .then(res => {
-        // calculate alt per btc values
-        let dashPerBtc = (this.state.btcValue / this.state.dashCapCoin.usd)
-        let ethPerBtc = (this.state.btcValue / this.state.ethCapCoin.usd)
-        let ltcPerBtc = (this.state.btcValue / this.state.ltcCapCoin.usd)
-        // convert string to number logic
-        // let ltcValueContainer = ''
-        // let ltcValue = res.result.XLTCZUSD.c[0]
-        // for(let i = 0; i < ltcValue.length - 1; i ++ ) {
-        //   // filter commas out of string
-        //   if (ltcValue[i] !== (",")) {
-        //     ltcValueContainer += ltcValue[i]
-        //   }
-        // }
-        // // convert new string to number type
-        // let actualValue = parseFloat(ltcValueContainer)
-        // set state to numbers
         this.setState({          
           altPerBtc: {
             dash: dashPerBtc,
@@ -421,13 +327,11 @@ class App extends Component {
           fetchCheck: true
         })
         })
-        // trigger chart render function
-        // this.renderChart()
+
   }
   
   sendToDb() {
-    // let lastFetch = this.state.fetchCheck
-    if (this.state.fetchCheck === true) {      
+    if (this.state.fetchCheck === true) {  
       fetch('/api/crypto', {
         headers: {
           'Content-Type': 'application/json',
@@ -479,10 +383,8 @@ class App extends Component {
           ltc_us_low: this.state.ltcPolo.low24hr,
         }),
       }).then(res => res.json())
-      .catch(err => console.log(err))
-      console.log('posted')
-    } 
-    console.log('posted')
+      .catch(err => console.log(err))      
+    }    
   }
 
 
@@ -490,7 +392,6 @@ class App extends Component {
     if (this.state.fetchCheck === true) {
       this.sendToDb()
     }
-    // console.log(this)
     return (
       <div>
         <h1>hello world</h1>
