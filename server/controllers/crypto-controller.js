@@ -16,6 +16,27 @@ cryptoController.index = (req, res, next) => {
     .catch(next)
 }
 
+movieController.show = (req, res, next) => {
+	Movie.findById(req.params.id)
+	.then(movie => {
+		res.json({
+			message: 'ok',
+			data: { movie },
+		})
+	}).catch(next)
+}
+
+// find latest entry
+cryptoController.latest = (req, res, next) => {
+    Crypto.findRecent()
+    .then(crypto => {
+        res.json({
+            message: 'retrieved entry',
+            data: { crypto }
+        })
+    }).catch(next)
+}
+
 // create new entry
 cryptoController.create = (req, res) => {
     console.log(req.body, 'from cryptocontroller#create')
