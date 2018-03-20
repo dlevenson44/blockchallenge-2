@@ -17,11 +17,11 @@ class BtcController extends Component {
             oneWeek: 0,
             fetchStatus: false,
         }
-        this.getBtcData = this.getBtcData.bind(this)
+        this.getData = this.getData.bind(this)
         this.renderData = this.renderData.bind(this)
     }
 
-    getBtcData() {
+    getData() {
         if (this.state.fetchStatus === false) {
             console.log('fetched')
             fetch('/api/crypto')
@@ -75,7 +75,7 @@ class BtcController extends Component {
     }
 
     render() {
-        this.getBtcData()
+        this.getData()
         // console.log(this.state)
         return(
             <div>
