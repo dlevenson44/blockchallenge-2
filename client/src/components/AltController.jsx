@@ -86,6 +86,7 @@ class AltController extends Component {
         return(
             <div>
                 <nav>
+                    <h5>AltCoin per BitCoin Values</h5>-
                     <p>{this.state.dash} DASH per BTC</p>
                     <p>{this.state.eth} ETH per BTC</p>
                     <p>{this.state.ltc} LTC per BTC</p>
