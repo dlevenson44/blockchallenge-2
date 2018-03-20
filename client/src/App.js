@@ -399,8 +399,8 @@ class App extends Component {
         <div>
           <Route exact path = '/bitcoin' component={BtcController} />
           <Route exact path = '/dash' component={DashController} />
-          <Route exact path = '/eth' component={EthController} />
-          <Route exact path = '/ltc' component={LtcController} />
+          <Route exact path = '/ethereum' component={EthController} />
+          <Route exact path = '/litecoin' component={LtcController} />
         </div>      
       </div>
       </div>
