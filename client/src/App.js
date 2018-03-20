@@ -7,6 +7,7 @@ import './App.css';
 import BtcController from './components/BtcController'
 import DashController from './components/DashController'
 import EthController from './components/EthController'
+import LtcController from './components/LtcController'
 
 class App extends Component {
   constructor(props) {
@@ -392,6 +393,7 @@ class App extends Component {
         <BtcController />
         <DashController />
         <EthController />
+        <LtcController />
       </div>
     );
   }
