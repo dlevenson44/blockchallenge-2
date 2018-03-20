@@ -5,9 +5,6 @@ class BtcController extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dash_usd: 0,
-            eth_usd: 0,
-            ltc_usd: 0,
             usd: 0,
             usHigh: 0,
             usLow: 0,
@@ -30,54 +27,9 @@ class BtcController extends Component {
             fetch('/api/crypto')
             .then(res => res.json())
             .then(res => {
-                // calculate alt per btc values
-                // convert dash_usd to number type
-                let dashContainer = ''
-                let dashValue = res.data.crypto[0].dash_usd
-                for(let i = 0; i < dashValue.length -1; i++) {
-                    // filter commas out of string
-                    if(dashValue[i] !== (",")) {
-                        dashContainer += dashValue[i]
-                    }
-                }
-                // convert eth_usd to number type
-                let ethContainer = ''
-                let ethValue = res.data.crypto[0].eth_usd
-                for(let i = 0; i < ethValue.length -1; i++) {
-                    // filter commas out of string
-                    if(ethValue[i] !== (",")) {
-                        ethContainer += ethValue[i]
-                    }
-                }
-                // convert ltc_usd to number type
-                let ltcContainer = ''
-                let ltcValue = res.data.crypto[0].ltc_usd
-                for(let i = 0; i < ltcValue.length -1; i++) {
-                    // filter commas out of string
-                    if(ltcValue[i] !== (",")) {
-                        ltcContainer += ltcValue[i]
-                    }
-                }
-                // convert btc_usd to number type
-                let btcContainer = ''
-                let btcValue = res.data.crypto[0].btc_usd
-                for(let i = 0; i < btcValue.length -1; i++) {
-                    // filter commas out of string
-                    if(btcValue[i] !== (",")) {
-                        btcContainer += btcValue[i]
-                    }
-                }
-                // convert string to number
-                let dashUsd = parseFloat(dashContainer)
-                let ethUsd = parseFloat(ethContainer)
-                let ltcUsd = parseFloat(ltcContainer)
-                let btcUsd = parseFloat(btcContainer)
                 // set state
                 this.setState({
-                    dash_usd: res.data.crypto[0].dash_usd,
-                    eth_usd: res.data.crypto[0].eth_usd,
-                    ltc_usd: res.data.crypto[0].ltc_usd,
-                    usd: btcUsd,
+                    usd: res.data.crypto[0].btc_usd,
                     usHigh: res.data.crypto[0].btc_us_high,
                     usLow: res.data.crypto[0].btc_us_low,
                     eur: res.data.crypto[0].btc_eur,
