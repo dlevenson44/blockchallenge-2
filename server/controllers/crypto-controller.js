@@ -16,16 +16,6 @@ cryptoController.index = (req, res, next) => {
     .catch(next)
 }
 
-movieController.show = (req, res, next) => {
-	Movie.findById(req.params.id)
-	.then(movie => {
-		res.json({
-			message: 'ok',
-			data: { movie },
-		})
-	}).catch(next)
-}
-
 // find latest entry
 cryptoController.latest = (req, res, next) => {
     Crypto.findRecent()
