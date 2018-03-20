@@ -18,6 +18,7 @@ class BtcController extends Component {
             fetchStatus: false,
         }
         this.getBtcData = this.getBtcData.bind(this)
+        this.renderData = this.renderData.bind(this)
     }
 
     getBtcData() {
@@ -44,12 +45,41 @@ class BtcController extends Component {
         }
     }
 
+    renderData() {
+        if (this.state.fetchStatus === true) {
+            return(
+                <div className="crypto-container">
+                <h5>Trends:</h5>
+                    <p>{this.state.trades} trades in the last 24 hours</p>
+                    <p>{this.state.oneHour}% change in last hour</p>
+                    <p>{this.state.oneDay}% change in last 24 hours</p>
+                    <p>{this.state.oneWeek}% change in last 7 days</p>                
+                <h5>BTC US Market Info</h5>
+                    <p>${this.state.usd} per BTC</p>
+                    <p>${this.state.usHigh} is the 24 hour high</p>
+                    <p>${this.state.usLow} is the 24 hour low</p>                            
+                <h5>BTC EU Market Info</h5>
+                    <p>€{this.state.eur} per BTC</p>
+                    <p>€{this.state.eurHigh} is the 24 hour high</p>
+                    <p>€{this.state.eurLow} is the 24 hour low</p>            
+            </div>
+            )
+
+        } else {
+            return(
+                <div>
+                    <p>Loading Data</p>
+                </div>
+            )
+        }
+    }
+
     render() {
         this.getBtcData()
         // console.log(this.state)
         return(
             <div>
-                <h1>hello</h1>
+                {this.renderData()}
             </div>
         )
     }
