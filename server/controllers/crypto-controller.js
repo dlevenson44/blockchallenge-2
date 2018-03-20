@@ -21,7 +21,7 @@ cryptoController.create = (req, res) => {
     console.log(req.body, 'from cryptocontroller#create')
     Crypto.create({
         // time made
-        time_made: req.body.time_made,
+        time_made: Date.now(),
         // alt per btc alues
         dash_per_btc: req.body.dash_per_btc,
         eth_per_btc: req.body.eth_per_btc,
