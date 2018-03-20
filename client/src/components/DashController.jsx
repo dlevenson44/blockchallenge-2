@@ -78,7 +78,7 @@ class DashController extends Component {
         this.getData()
         // console.log(this.state)
         return(
-            <div>
+            <div className="crypto-container">
                 {this.renderData()}
             </div>
         )
