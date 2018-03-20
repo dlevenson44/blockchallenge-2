@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route } from 'react-router-dom' 
 import './App.css';
 
+// import components
+import BtcController from './components/BtcController'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -490,6 +493,7 @@ class App extends Component {
     return (
       <div>
         <h1>hello world</h1>
+        <BtcController />
       </div>
     );
   }
