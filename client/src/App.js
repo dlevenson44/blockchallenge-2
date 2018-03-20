@@ -10,6 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      // checks to see if data has already been posted to db
+      dataSent: false,
       // trigger when all fetches have run
       fetchCheck: false,
       // bitcoin/usd value
@@ -321,12 +323,12 @@ class App extends Component {
           },
           fetchCheck: true
         })
+        this.sendToDb()
         })
-
   }
   
   sendToDb() {
-    if (this.state.fetchCheck === true) {  
+    if (this.state.fetchCheck === true) {
       fetch('/api/crypto', {
         headers: {
           'Content-Type': 'application/json',
@@ -375,15 +377,13 @@ class App extends Component {
           ltc_us_low: this.state.ltcPolo.low24hr,
         }),
       }).then(res => res.json())
-      .catch(err => console.log(err))      
+      .catch(err => console.log(err))  
     }    
   }
 
 
+
   render() {
-    if (this.state.fetchCheck === true) {
-      this.sendToDb()
-    }
     return (
       <div>
         <h1>hello world</h1>
