@@ -7,7 +7,7 @@ const Nav = () => {
             <div className="hidden-md-down" id="nav-container">
                 <ul className="nav justify-content-center">
                 <li className="nav-item" id="nav-li">                    
-                    <Link to="/blockchallenge-1" className="nav link" id="nav-spec">Home</Link>
+                    <Link to="/" className="nav link" id="nav-spec">Home</Link>
                 </li>
 
                 <li className="nav-item" id="nav-li">                    
