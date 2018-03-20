@@ -390,7 +390,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div>
+      <div className="App">
+      <div className="container">
         <h1>Crypto Tracker</h1>
         <AltController />
         <div>
@@ -399,6 +400,7 @@ class App extends Component {
           <Route exact path = '/eth' component={EthController} />
           <Route exact path = '/ltc' component={LtcController} />
         </div>      
+      </div>
       </div>
       </Router>
     );
