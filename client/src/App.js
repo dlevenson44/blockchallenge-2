@@ -384,17 +384,21 @@ class App extends Component {
     }    
   }
 
-
+  // <Route exact path='/portfolio' component={Home}/>
 
   render() {
     return (
+      <Router>
       <div>
-        <h1>hello world</h1>
-        <BtcController />
-        <DashController />
-        <EthController />
-        <LtcController />
+        <h1>Crypto Tracker</h1>
+        <div>
+          <Route exact path = '/bitcoin' component={BtcController} />
+          <Route exact path = '/dash' component={DashController} />
+          <Route exact path = '/eth' component={EthController} />
+          <Route exact path = '/ltc' component={LtcController} />
+        </div>      
       </div>
+      </Router>
     );
   }
 }
