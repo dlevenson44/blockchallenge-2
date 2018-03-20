@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 
 // import components
+import AltController from './components/AltController'
 import BtcController from './components/BtcController'
 import DashController from './components/DashController'
 import EthController from './components/EthController'
@@ -391,6 +392,7 @@ class App extends Component {
       <Router>
       <div>
         <h1>Crypto Tracker</h1>
+        <AltController />
         <div>
           <Route exact path = '/bitcoin' component={BtcController} />
           <Route exact path = '/dash' component={DashController} />

@@ -5,17 +5,17 @@ class AltController extends Component {
     constructor(props)  {
         super(props)
         this.state = {
-            btc: 0,
             dash: 0,
             eth: 0,
             ltc: 0,
             fetchStatus: false,
-            perValue: {
-                dash: 0,
-                eth: 0,
-                ltc: 0,
-            }
         }
+    }
+
+    componentWillMount() {
+        // if (this.state.btc === 0) {
+            this.getData()
+        // } 
     }
 
     getData() {
@@ -65,19 +65,34 @@ class AltController extends Component {
                 let dashUsd = parseFloat(dashContainer)
                 let ethUsd = parseFloat(ethContainer)
                 let ltcUsd = parseFloat(ltcContainer)
+                // set alt per btc to variable
+                let dashPer = (btcContainer / dashContainer).toPrecision(4)
+                let ethPer = (btcContainer / ethContainer).toPrecision(4)
+                let ltcPer = (btcContainer / ltcContainer).toPrecision(4)
                 // set state
                 this.setState({
-                    btc: btcContainer,
-                    dash: dashContainer,
-                    eth: ethContainer,
-                    ltc: ltcContainer,
+                    dash: dashPer,
+                    eth: ethPer,
+                    ltc: ltcPer,
                     fetchStatus: true
                 })
             })
             .catch(err => console.log(err))
         }
     }
-    // this.calculate
+
+
+    render() {        
+        return(
+            <div>
+                <nav>
+                    <p>{this.state.dash} DASH per BTC</p>
+                    <p>{this.state.eth} ETH per BTC</p>
+                    <p>{this.state.ltc} LTC per BTC</p>
+                </nav>
+            </div>
+        )
+    }
 }
 
 export default AltController
