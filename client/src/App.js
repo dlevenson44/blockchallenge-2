@@ -425,8 +425,7 @@ class App extends Component {
   sendToDb() {
     let data = this.state
     let lastFetch = this.state.fetchCheck
-    if (lastFetch === true) {
-      console.log(data)
+    if (lastFetch === true) {      
       fetch('/api/crypto', {
         headers: {
           'Content-Type': 'application/json',
@@ -435,7 +434,9 @@ class App extends Component {
         body: JSON.stringify(data),
       }).then(res => res.json())
       .catch(err => console.log(err))
+      console.log('posted')
     } 
+    console.log('posted')
   }
 
 

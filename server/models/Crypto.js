@@ -23,10 +23,10 @@ Crypto.create = (crypto) => {
         
         RETURNING *
     `, [crypto.time_made, crypto.dash_per_btc, crypto.eth_per_btc, crypto.ltc_per_btc, 
-        crypto.btc_usd, crypto.btc_us_high, crypto.btc_us_low, crypto.btc_eur, crypto.btc_eur_high, crypto.btc_eur_low, crypto.btc_one_hour, crypto.btc_24_hours, btc_crypto_7_days,
-        crypto.dash_usd, crypto.dash_us_high, crypto.dash_us_low, crypto.dash_eur, crypto.dash_eur_high, crypto.dash_eur_low, crypto.dash_trades, crypto.dash_one_hour, crypto.dash_24_hours, dash_crypto_7_days,
-        crypto.eth_usd, crypto.eth_us_high, crypto.eth_us_low, crypto.eth_eur, crypto.eth_eur_high, crypto.eth_eur_low, crypto.eth_trades, crypto.eth_one_hour, crypto.eth_24_hours, eth_crypto_7_days,
-        crypto.ltc_usd, crypto.ltc_us_high, crypto.ltc_us_low, crypto.ltc_eur, crypto.ltc_eur_high, crypto.ltc_eur_low, crypto.ltc_trades, crypto.ltc_one_hour, crypto.ltc_24_hours, ltc_crypto_7_days])
+        crypto.btc_usd, crypto.btc_us_high, crypto.btc_us_low, crypto.btc_eur, crypto.btc_eur_high, crypto.btc_eur_low, crypto.btc_one_hour, crypto.btc_24_hours, crypto.btc_7_days,
+        crypto.dash_usd, crypto.dash_us_high, crypto.dash_us_low, crypto.dash_eur, crypto.dash_eur_high, crypto.dash_eur_low, crypto.dash_trades, crypto.dash_one_hour, crypto.dash_24_hours, crypto.dash_7_days,
+        crypto.eth_usd, crypto.eth_us_high, crypto.eth_us_low, crypto.eth_eur, crypto.eth_eur_high, crypto.eth_eur_low, crypto.eth_trades, crypto.eth_one_hour, crypto.eth_24_hours, crypto.eth_7_days,
+        crypto.ltc_usd, crypto.ltc_us_high, crypto.ltc_us_low, crypto.ltc_eur, crypto.ltc_eur_high, crypto.ltc_eur_low, crypto.ltc_trades, crypto.ltc_one_hour, crypto.ltc_24_hours, crypto.ltc_7_days])
 }
 
 module.exports = Crypto
