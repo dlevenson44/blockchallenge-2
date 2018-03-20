@@ -9,6 +9,11 @@ Crypto.findAll = () => {
     return db.query(`SELECT * FROM tracked_data`)
 }
 
+// find most recent entry
+Crypto.findRecent = () => {
+    return db.query(`SELECT TOP 1 * FROM tracked_data ORDER BY id DESC`)
+}
+
 // create new entry
 Crypto.create = (crypto) => {
     return db.one(`
