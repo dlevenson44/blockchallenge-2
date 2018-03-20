@@ -9,6 +9,7 @@ import BtcController from './components/BtcController'
 import DashController from './components/DashController'
 import EthController from './components/EthController'
 import LtcController from './components/LtcController'
+import Nav from './components/Nav'
 
 class App extends Component {
   constructor(props) {
@@ -393,6 +394,7 @@ class App extends Component {
       <div className="App">
       <div className="container">
         <h1>Crypto Tracker</h1>
+        <Nav />
         <AltController />
         <div>
           <Route exact path = '/bitcoin' component={BtcController} />
