@@ -84,7 +84,7 @@ class AltController extends Component {
 
     render() {        
         return(
-            <div>
+            <div className="hidden-sm-down">
                 <nav>
                     <h5>AltCoin per BitCoin Values</h5>-
                     <p>{this.state.dash} DASH per BTC</p>
