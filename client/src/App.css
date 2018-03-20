@@ -1,4 +1,8 @@
-.App {
+body {
+  background-color: #EFE8D8;
+}
+
+.App {  
   text-align: center;
 }
 
@@ -20,6 +24,19 @@
 
 .App-intro {
   font-size: large;
+}
+
+.crypto-container {
+  margin-top: 25px;
+}
+
+h1, h3, h5, #nav-spec, #nav-spec:hover, #nav-spec:visited {
+  color: #E54B4B;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#nav-spec {
+  margin: 15px;
 }
 
 @keyframes App-logo-spin {
