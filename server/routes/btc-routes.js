@@ -8,6 +8,7 @@ const btcRouter = express.Router()
 
 // set routes
 btcRouter.get('/', btcController.latest)
-btcRouter.post('/', btcHelpers.getCoinDesk, btcHelpers.getCapCoin, btcHelpers.getKraken, btcHelpers.getPolo, btcController.create)
+btcRouter.get('/', btcHelpers.getCoinDesk, btcHelpers.getCapCoin, btcHelpers.getKraken, btcHelpers.getPolo, btcController.sendApiData)
+btcRouter.post('/', btcController.create)
 
 module.exports = btcRouter
