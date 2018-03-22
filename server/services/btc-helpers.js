@@ -4,21 +4,27 @@ require('isomorphic-fetch')
 function getCoinDesk(req, res, next) {
     fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
     .then(res => res.json())
+    console.log(res)
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcCoinDesk = fetchRes
         next()
+    }).catch(err => {
+        res.json({err})
     })
 }
 
 // retrieve data from Cap Coin API
-function getCapCoin(req, res, next) {
+function getCapCoin(req, res, next) {    
     fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=USD')
     .then(res => res.json())
+    console.log(res)
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcCapCoin = fetchRes
         next()
+    }).catch(err => {
+        res.json({err})
     })
 }
 
@@ -26,10 +32,13 @@ function getCapCoin(req, res, next) {
 function getKraken(req, res, next) {
     fetch('https://api.kraken.com/0/public/Ticker?pair=XXBTZCAD')
     .then(res => res.json())
+    console.log(res)
     // use res.locals to attach data to resposne object
     .then(fetchRes => {
         res.local.btcKraken = fetchRes
         next()
+    }).catch(err => {
+        res.json({err})
     })
 }
 
@@ -37,10 +46,13 @@ function getKraken(req, res, next) {
 function getPolo(req, res, next) {
     fetch('https://poloniex.com/public?command=returnTicker')
     .then(res => res.json())
+    console.log(res)
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.local.btcPolo = fetchRes
         next()
+    }).catch(err => {
+        res.json({err})
     })
 }
 
