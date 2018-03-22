@@ -59,4 +59,13 @@ btcController.create = (req, res) => {
     })
 }
 
+btcController.index = (req, res) => {
+    res.render('index.html', {
+        btcCoinDesk: res.locals.btcCoinDesk,
+        btcCapCoin: res.locals.btcCapCoin,
+        btcKraken: res.locals.btcKraken,
+        btcPolo: res.locals.btcPolo
+    })
+}
+
 module.exports = btcController
