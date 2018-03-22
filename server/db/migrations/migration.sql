@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS btc_data(
     eur_low DECIMAL,
     trades INT,
     one_hour DECIMAL,
-    24_hours DECIMAL,
-    7_days DECIMAL
+    one_day DECIMAL,
+    one_week DECIMAL
 );
 
 DROP TABLE IF EXISTS dash_data
@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS dash_data(
     eur_low DECIMAL,
     trades INT,
     one_hour DECIMAL,
-    24_hours DECIMAL,
-    7_days DECIMAL
+    one_day DECIMAL,
+    one_week DECIMAL
 );
 
 DROP TABLE IF EXISTS eth_data
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS eth_data(
     eur_low DECIMAL,
     trades INT,
     one_hour DECIMAL,
-    24_hours DECIMAL,
-    7_days DECIMAL
+    one_day DECIMAL,
+    one_week DECIMAL
 );
 
 DROP TABLE IF EXISTS ltc_data
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS ltc_data(
     eur_low DECIMAL,
     trades INT,
     one_hour DECIMAL,
-    24_hours DECIMAL,
-    7_days DECIMAL
+    one_day DECIMAL,
+    one_week DECIMAL
 );
 
