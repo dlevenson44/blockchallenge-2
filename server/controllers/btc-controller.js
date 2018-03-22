@@ -27,8 +27,8 @@ btcController.latest = (req, res, next) => {
     }).catch(next)
 }
 
-// create new entry
-btcController.create = (req, res) => {
+// send api data
+btcController.sendApiData = (req, res) => {
     res.json({
         message: 'data returned for BTC',
         btcCoinDesk: res.locals.btcCoinDesk,
@@ -36,7 +36,11 @@ btcController.create = (req, res) => {
         btcKraken: res.locals.btcKraken,
         btcPolo: res.locals.btcPolo
     })
-    console.log(res, 'res from btcController#create')
+    console.log(res.locals, 'res.locals from btcController#sendApiData')
+}
+
+// create new entry
+btcController.create = (req, res) => {
     console.log(req.body, ' req.body from btcController#create')
     Btc.create({
         // time made
