@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS polo(
 );
 
 ALTER TABLE cap_coin
-ADD COLUMN crypto_id INTEGER REFERENCES ccurrency(id);
+ADD COLUMN crypto_id INTEGER REFERENCES currency(id);
 
 ALTER TABLE kraken
-ADD COLUMN crypto_id INTEGER REFERENCES ccurrency(id);
+ADD COLUMN crypto_id INTEGER REFERENCES currency(id);
 
 ALTER TABLE polo
-ADD COLUMN crypto_id INTEGER REFERENCES ccurrency(id);
+ADD COLUMN crypto_id INTEGER REFERENCES currency(id);
