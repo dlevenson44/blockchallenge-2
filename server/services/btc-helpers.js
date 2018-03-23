@@ -7,7 +7,7 @@ function getCoinDesk(req, res, next) {
     .then(res => res.json())
     // use res.locals to attach data to response object
     .then(fetchRes => {
-        res.locals.btcCapCoin = fetchRes
+        res.locals.btcCoinDesk = fetchRes
         // set btc USD value
         let btcUsd = fetchRes.bpi.USD.rate
         // insert into db
@@ -25,6 +25,22 @@ function getCoinDesk(req, res, next) {
     })
 }
 
+// update existing movie
+// Movie.update = (movie, id) => {
+// 	return db.one(`
+// 		UPDATE movies SET
+// 		title = $1, 
+// 		description = $2, 
+// 		genre = $3,
+// 		image = $4
+// 		WHERE id = $5
+// 		RETURNING *
+// 		`, [movie.title, movie.description, movie.genre, movie.image, id]);
+// }
+
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+
 // retrieve data from Cap Coin API
 function getCapCoin(req, res, next) {    
     fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=USD')
@@ -38,15 +54,11 @@ function getCapCoin(req, res, next) {
         let oneWeek = fetchRes[0].percent_change_7d
         // insert into db
         db.query(`
-            INSERT INTO btc_data(
-                one_hour,
-                one_day,
-                one_week
-            ) VALUES (
-                $1,
-                $2, 
-                $3
-            ) ON CONFLICT DO NOTHING
+            UPDATE btc_data SET(
+                one_hour = $1,
+                one_day = $2,
+                one_week = $3                
+            ) 
             RETURNING *
         `, [oneHour, oneDay, oneWeek])
         next()
