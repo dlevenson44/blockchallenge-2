@@ -7,7 +7,7 @@ function getCoinDesk(req, res, next) {
     .then(res => res.json())
     // use res.locals to attach data to response object
     .then(fetchRes => {
-        res.locals.btcCoinDesk = fetchRes
+        res.locals.btcCapCoin = fetchRes
         // set btc USD value
         let btcUsd = fetchRes.bpi.USD.rate
         // insert into db
@@ -16,7 +16,8 @@ function getCoinDesk(req, res, next) {
                 usd
             ) VALUES (
                 $1
-            ) RETURNING *
+            ) ON CONFLICT DO NOTHING
+            RETURNING *
         `, [btcUsd])
         next()
     }).catch(err => {
@@ -31,6 +32,23 @@ function getCapCoin(req, res, next) {
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcCapCoin = fetchRes
+        // set btc trend values
+        let oneHour = fetchRes[0].percent_change_1h
+        let oneDay = fetchRes[0].percent_change_24h
+        let oneWeek = fetchRes[0].percent_change_7d
+        // insert into db
+        db.query(`
+            INSERT INTO btc_data(
+                one_hour,
+                one_day,
+                one_week
+            ) VALUES (
+                $1,
+                $2, 
+                $3
+            ) ON CONFLICT DO NOTHING
+            RETURNING *
+        `, [oneHour, oneDay, oneWeek])
         next()
     }).catch(err => {
         res.json({err})
