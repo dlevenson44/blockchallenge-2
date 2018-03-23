@@ -1,10 +1,11 @@
 require('isomorphic-fetch')
+const db = require('../db/config')
 
 // retrieve data from Coin Desk API
 function getCoinDesk(req, res, next) {
     fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
     .then(res => res.json())
-    console.log(res)
+    // console.log(res)
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcCoinDesk = fetchRes
