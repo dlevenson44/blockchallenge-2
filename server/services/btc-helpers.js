@@ -8,6 +8,16 @@ function getCoinDesk(req, res, next) {
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcCoinDesk = fetchRes
+        // set btc USD value
+        let btcUsd = fetchRes.bpi.USD.rate
+        // insert into db
+        db.query(`
+            INSERT INTO btc_data (
+                usd
+            ) VALUES (
+                $1
+            ) RETURNING *
+        `, [btcUsd])
         next()
     }).catch(err => {
         res.json({err})
