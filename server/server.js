@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 })
 
 const btcRouter = require('./routes/btc-routes')
-app.use('/api/btc', btcRouter)
+app.get('/', btcRouter)
 
 // set error handler
 app.use('*', (req, res) => {

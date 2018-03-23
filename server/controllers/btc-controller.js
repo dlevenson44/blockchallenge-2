@@ -60,7 +60,7 @@ btcController.create = (req, res) => {
 }
 
 btcController.index = (req, res) => {
-    res.render('index.html', {
+    res.render('index', {
         btcCoinDesk: res.locals.btcCoinDesk,
         btcCapCoin: res.locals.btcCapCoin,
         btcKraken: res.locals.btcKraken,
