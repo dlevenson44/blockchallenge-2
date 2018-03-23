@@ -46,7 +46,7 @@ function getPolo(req, res, next) {
     .then(res => res.json())
     // use res.locals to attach data to response object
     .then(fetchRes => {
-        res.local.btcPolo = fetchRes
+        res.locals.btcPolo = fetchRes
         next()
     }).catch(err => {
         res.json({err})

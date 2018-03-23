@@ -37,7 +37,7 @@ btcController.sendApiData = (req, res) => {
         btcCoinDesk: res.locals.btcCoinDesk,
         btcCapCoin: res.locals.btcCapCoin,
         btcKraken: res.locals.btcKraken,
-        // btcPolo: res.locals.btcPolo
+        btcPolo: res.locals.btcPolo
     })
     console.log(res.locals, 'res.locals from btcController#sendApiData')
 }

@@ -11,9 +11,9 @@ const btcRouter = express.Router()
 // btcRouter.get('/', btcHelpers.getCoinDesk, btcHelpers.getCapCoin, btcHelpers.getKraken, btcHelpers.getPolo, btcController.sendApiData)
 // btcRouter.post('/', btcController.create)
 
-btcRouter.get('/btc', btcHelpers.getCoinDesk, btcHelpers.getCapCoin, btcHelpers.getKraken, btcController.sendApiData)
-btcRouter.get('/kraken', btcHelpers.getKraken, btcController.sendApiData)
-btcRouter.get('/coindesk', btcHelpers.getPolo, btcController.sendApiData)
+btcRouter.get('/btc', btcHelpers.getCoinDesk, btcHelpers.getCapCoin, btcHelpers.getKraken, btcHelpers.getPolo, btcController.sendApiData)
+// btcRouter.get('/kraken', btcHelpers.getKraken, btcController.sendApiData)
+// btcRouter.get('/coindesk', btcHelpers.getPolo, btcController.sendApiData)
 
 btcRouter.get('/', btcHelpers.getCoinDesk, btcHelpers.getCapCoin, btcHelpers.getKraken, btcHelpers.getPolo, btcController.index)
 
