@@ -35,8 +35,21 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 
+// pull routes
 const cryptoRouter = require('./routes/crypto-routes')
 app.use('/api/crypto', cryptoRouter)
+
+const btcRouter = require('./routes/btc-routes')
+app.use('/api/btc', btcRouter)
+
+const dashRouter = require('./routes/dash-routes')
+app.use('/api/dash', dashRouter)
+
+const ethRouter = require('./routes/eth-routes')
+app.use('/api/eth', ethRouter)
+
+const ltcRouter = require('./routes/ltc-routes')
+app.use('/api/ltc', ltcRouter)
 
 // set error handler
 app.use('*', (req, res) => {
