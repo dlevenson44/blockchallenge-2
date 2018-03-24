@@ -23,7 +23,7 @@ class DashController extends Component {
 
     getData() {
         if (this.state.fetchStatus === false) {
-            console.log('fetched')
+            // console.log('fetched')
             fetch('/api/crypto')
             .then(res => res.json())
             .then(res => {
