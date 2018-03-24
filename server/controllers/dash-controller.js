@@ -1,0 +1,36 @@
+// import model
+const Dash = require('../models/Dash')
+
+// initiate controller object
+const dashController = {}
+
+// pull all entries from table
+dashController.index = (req, res, next) => {
+    Dash.findAll()
+    .then(dash => {
+        res.json({
+            message: 'retrieved data',
+            data: { dash }
+        })
+    }).catch(next)
+}
+
+// create new entry
+dashController.create = (req, res) => {
+    console.log(req.body, 'from dashcontroller#create')
+    dash.create({
+        time_made: Date.now(),
+        usd: req.body.usd,
+        us_high: req.body.us_high,
+        us_low: req.body.us_low,
+        eur: req.body.eur,
+        eur_high: req.body.eur_high,
+        eur_low: req.body.eur_low,
+        trades: req.body.trades,
+        one_hour: req.body.one_hour,
+        one_day: req.body.one_day,
+        one_week: req.body.one_week
+    })
+}
+
+module.exports = dashController
