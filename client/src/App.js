@@ -113,10 +113,9 @@ class App extends Component {
         low24hr: 0
       }, 
     }
-    	// bind btcCoinDesk and renderChart functions
+    	// bind btcCoinDesk
 		this.btcCoinDesk = this.btcCoinDesk.bind(this)
-    // this.renderChart = this.renderChart.bind(this)
-    // this.sendToDb = this.sendToDb.bind(this)
+
   }
   componentWillMount() {
     this.btcCoinDesk()      
@@ -359,88 +358,13 @@ class App extends Component {
           },
           fetchCheck: true
         })
-        // if(this.state.fetchCounter === 10) {
-        // this.sendToDb()
-        // }
-        })
-  }
-  
-  // sendToDb() {    
-  //   // if (this.state.fetchCounter === 10) {
-  //     console.log(this.state, 'from sendtodb')
-  //     fetch('/api/crypto', {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         btc_usd: this.state.btcValue,
-  //         btc_one_hour: this.state.btcCapCoin.oneHour,
-  //         btc_24_hours: this.state.btcCapCoin.oneDay,
-  //         btc_7_days: this.state.btcCapCoin.oneWeek,
-  //         btc_eur: this.state.btcKraken.eur,
-  //         btc_eur_low: this.state.btcKraken.trends.low,
-  //         btc_eur_high: this.state.btcKraken.trends.high,
-  //         btc_trades: this.state.btcKraken.trends.trades,
-  //         btc_us_high: this.state.btcPolo.high24hr,
-  //         btc_us_low: this.state.btcPolo.low24hr,
-  //         dash_usd: this.state.dashCapCoin.usd,
-  //         dash_one_hour: this.state.dashCapCoin.trends.oneHour,
-  //         dash_24_hours: this.state.dashCapCoin.trends.oneDay,
-  //         dash_7_days: this.state.dashCapCoin.trends.oneWeek,
-  //         dash_eur: this.state.dashKraken.eur,
-  //         dash_eur_low: this.state.dashKraken.trends.low,
-  //         dash_eur_high: this.state.dashKraken.trends.high,
-  //         dash_trades: this.state.dashKraken.trends.trades,
-  //         dash_us_high: this.state.dashPolo.high24hr,
-  //         dash_us_low: this.state.dashPolo.low24hr,
-  //         eth_usd: this.state.ethCapCoin.usd,
-  //         eth_one_hour: this.state.ethCapCoin.trends.oneHour,
-  //         eth_24_hours: this.state.ethCapCoin.trends.oneDay,
-  //         eth_7_days: this.state.ethCapCoin.trends.oneWeek,
-  //         eth_eur: this.state.ethKraken.eur,
-  //         eth_eur_low: this.state.ethKraken.trends.low,
-  //         eth_eur_high: this.state.ethKraken.trends.high,
-  //         eth_trades: this.state.ethKraken.trends.trades,
-  //         eth_us_high: this.state.ethPolo.high24hr,
-  //         eth_us_low: this.state.ethPolo.low24hr,
-  //         ltc_usd: this.state.ltcCapCoin.usd,
-  //         ltc_one_hour: this.state.ltcCapCoin.trends.oneHour,
-  //         ltc_24_hours: this.state.ltcCapCoin.trends.oneDay,
-  //         ltc_7_days: this.state.ltcCapCoin.trends.oneWeek,
-  //         ltc_eur: this.state.ltcKraken.eur,
-  //         ltc_eur_low: this.state.ltcKraken.trends.low,
-  //         ltc_eur_high: this.state.ltcKraken.trends.high,
-  //         ltc_trades: this.state.ltcKraken.trends.trades,
-  //         ltc_us_high: this.state.ltcPolo.high24hr,
-  //         ltc_us_low: this.state.ltcPolo.low24hr,
-  //       }),
-  //     }).then(res => res.json())
-  //     .then(
-  //       this.setState({
-  //         dataSent: true
-  //       })
-  //     )
-  //     .catch(err => console.log(err))  
-  //   // }    
-  // }
+      })
+    }
 
 
-//   <Route path='/dash' render={() => <DashController btcValue={this.state.btcValue}
-//   dashCapCoin={this.state.dashCapCoin}
-//   dashKraken={this.state.dashKraken}
-//   dashPolo={this.state.dashPolo} />
-// } />
-// <Route path='/ethereum' render={() => <EthController btcValue={this.state.btcValue}
-//   ethCapCoin={this.state.ethCapCoin}
-//   ethKraken={this.state.ethKraken}
-//   ethPolo={this.state.ethPolo} />
-// } />
-// <Route path='/litecoin' render={() => <LtcController btcValue={this.state.btcValue}
-//   ltcCapCoin={this.state.ethCapCoin}
-//   ltcKraken={this.state.ltcKraken}
-//   ltcPolo={this.state.ltcPolo} />				
-// } />
+
+
+// <AltController />
   render() {
 		return (
 			<Router>
@@ -448,7 +372,7 @@ class App extends Component {
 				<div className="container">
 				<h1>Crypto Tracker</h1>
 				<Nav />
-        <AltController />
+        
 				<div>				
 				<Route path='/bitcoin' render={() => <BtcController btcValue={this.state.btcValue} 
 					btcCapCoin={this.state.btcCapCoin}
@@ -456,6 +380,27 @@ class App extends Component {
 					btcPolo={this.state.btcPolo}
 				  fetchCounter={this.state.fetchCounter} />
 				} />
+
+        <Route path='/dash' render={() => <DashController
+          dashCapCoin={this.state.dashCapCoin}
+          dashKraken={this.state.dashKraken}
+          dashPolo={this.state.dashPolo}
+          fetchCounter={this.state.fetchCounter} />
+        } />
+
+        <Route path='/ethereum' render={() => <EthController btcValue={this.state.btcValue}
+          ethCapCoin={this.state.ethCapCoin}
+          ethKraken={this.state.ethKraken}
+          ethPolo={this.state.ethPolo} 
+          fetchCounter={this.state.fetchCounter} />
+        } />
+        
+        <Route path='/litecoin' render={() => <LtcController btcValue={this.state.btcValue}
+          ltcCapCoin={this.state.ethCapCoin}
+          ltcKraken={this.state.ltcKraken}
+          ltcPolo={this.state.ltcPolo} 
+          fetchCounter={this.state.fetchCounter} />			
+        } />
 
 				</div>
 				</div>

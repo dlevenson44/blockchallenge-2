@@ -53,7 +53,6 @@ class BtcController extends Component {
 
     
     getData() {
-        console.log('GETTING')
         if (this.state.fetchStatus === false) {
             fetch('/api/btc')
             .then(res => res.json())
@@ -79,8 +78,6 @@ class BtcController extends Component {
     }
 
     renderData() {
-        if (typeof this.state.eur === 'string') {
-            console.log(typeof this.state.eur)
         return(
             <div className="crypto-container">
             <h5>Trends:</h5>
@@ -98,13 +95,6 @@ class BtcController extends Component {
                 <p>€{(this.state.eurLow)} is the 24 hour low</p>            
         </div>
         )
-        } else if (typeof this.state.usd === 'number') {
-            return (
-            <div className="crypto-container">
-            <h1>loading</h1>          
-            </div>
-            )
-        }
     }
 
     render() {
