@@ -18,7 +18,7 @@ btcController.index = (req, res, next) => {
 // find latest entry
 btcController.latest = (req, res, next) => {
     Btc.findRecent()
-    .then(eth => {
+    .then(btc => {
         res.json({
             message: 'retrieved entry',
             data: { btc }
