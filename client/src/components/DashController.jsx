@@ -60,12 +60,12 @@ class DashController extends Component {
             .then(res => {
                 // set state
                 this.setState({
-                    usd: res.data.dash[0].usd,
-                    usHigh: res.data.dash[0].us_high,
-                    usLow: res.data.dash[0].us_low,
-                    eur: res.data.dash[0].eur,
-                    eurHigh: res.data.dash[0].eur_high,
-                    eurLow: res.data.dash[0].eur_low,
+                    usd: (res.data.dash[0].usd).substring(0, 6),
+                    usHigh: (res.data.dash[0].us_high).substring(0, 6),
+                    usLow: (res.data.dash[0].us_low).substring(0, 6),
+                    eur: (res.data.dash[0].eur).substring(0, 6),
+                    eurHigh: (res.data.dash[0].eur_high).substring(0, 6),
+                    eurLow: (res.data.dash[0].eur_low).substring(0, 6),
                     trades: res.data.dash[0].trades,
                     oneHour: res.data.dash[0].one_hour,
                     oneDay: res.data.dash[0].one_day,
