@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS btc_data;
 CREATE TABLE IF NOT EXISTS btc_data(
-    TIME_MADE BIGINT,
+    time_made BIGINT,
     usd TEXT,
     us_high TEXT,
     us_low TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS btc_data(
 
 DROP TABLE IF EXISTS dash_data;
 CREATE TABLE IF NOT EXISTS dash_data(
-    TIME_MADE BIGINT,
+    time_made BIGINT,
     usd TEXT,
     us_high TEXT,
     us_low TEXT,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS dash_data(
 
 DROP TABLE IF EXISTS eth_data;
 CREATE TABLE IF NOT EXISTS eth_data(
-    TIME_MADE BIGINT,
+    time_made BIGINT,
     usd TEXT,
     us_high TEXT,
     us_low TEXT,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS eth_data(
 
 DROP TABLE IF EXISTS ltc_data;
 CREATE TABLE IF NOT EXISTS ltc_data(
-    TIME_MADE BIGINT,
+    time_made BIGINT,
     usd TEXT,
     us_high TEXT,
     us_low TEXT,
