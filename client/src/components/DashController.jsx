@@ -54,12 +54,10 @@ class DashController extends Component {
 
     
     getData() {
-        console.log('GETTING')
         if (this.state.fetchStatus === false) {
             fetch('/api/dash')
             .then(res => res.json())
             .then(res => {
-                console.log(res, 'RESPONSE YO')
                 // set state
                 this.setState({
                     usd: res.data.dash[0].usd,
