@@ -5,22 +5,26 @@ class DashController extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            usd: '',
-            usHigh: '',
-            usLow: '',
-            eur: '',
-            eurHigh: '',
-            eurLow: '',
-            trades: '',
-            oneHour: '',
-            oneDay: '',
-            oneWeek: '',
+            usd: '' || this.props.dashCapCoin.usd,
+            usHigh: '' || this.props.dashPolo.high24hr,
+            usLow: '' || this.props.dashPolo.low24hr,
+            eur: '' || this.props.dashKraken.eur,
+            eurHigh: '' || this.props.dashKraken.trends.high,
+            eurLow: ''|| this.props.dashKraken.trends.low,
+            trades: '' || this.props.dashKraken.trends.trades,
+            oneHour: '' || this.props.dashCapCoin.trends.oneHour,
+            oneDay: '' || this.props.dashCapCoin.trends.oneHour,
+            oneWeek: '' || this.props.dashCapCoin.trends.oneHour,
             fetchStatus: false,
             visited: false,
         }
         // this.getData = this.getData.bind(this)
         this.renderData = this.renderData.bind(this)
         this.sendToDb = this.sendToDb.bind(this)
+    }
+
+    componentDidUpdate() {
+        this.renderData()
     }
 
     sendToDb() {        
@@ -86,12 +90,12 @@ class DashController extends Component {
                 <p>{this.state.oneWeek}% change in last 7 days</p>                
             <h5>DASH US Market Info</h5>
                 <p>${this.state.usd} per DASH</p>
-                <p>${(this.state.usHigh).substring(0, 8)} is the 24 hour high</p>
-                <p>${(this.state.usLow).substring(0, 8)} is the 24 hour low</p>                            
+                <p>${(this.state.usHigh)} is the 24 hour high</p>
+                <p>${(this.state.usLow)} is the 24 hour low</p>                            
             <h5>DASH EU Market Info</h5>
-                <p>€{(this.state.eur).substring(0, 8)} per DASH</p>
-                <p>€{(this.state.eurHigh).substring(0, 8)} is the 24 hour high</p>
-                <p>€{(this.state.eurLow).substring(0, 8)} is the 24 hour low</p>            
+                <p>€{(this.state.eur)} per DASH</p>
+                <p>€{(this.state.eurHigh)} is the 24 hour high</p>
+                <p>€{(this.state.eurLow)} is the 24 hour low</p>            
         </div>
 
         )
