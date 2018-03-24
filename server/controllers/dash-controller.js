@@ -18,7 +18,7 @@ dashController.index = (req, res, next) => {
 // create new entry
 dashController.create = (req, res) => {
     console.log(req.body, 'from dashcontroller#create')
-    dash.create({
+    Dash.create({
         time_made: Date.now(),
         usd: req.body.usd,
         us_high: req.body.us_high,
