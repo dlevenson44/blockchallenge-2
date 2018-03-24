@@ -15,6 +15,17 @@ dashController.index = (req, res, next) => {
     }).catch(next)
 }
 
+// find latest entry
+dashController.latest = (req, res, next) => {
+    Dash.findRecent()
+    .then(dash => {
+        res.json({
+            message: 'retrieved entry',
+            data: { dash }
+        })
+    }).catch(next)
+}
+
 // create new entry
 dashController.create = (req, res) => {
     console.log(req.body, 'from dashcontroller#create')

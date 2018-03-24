@@ -15,6 +15,17 @@ btcController.index = (req, res, next) => {
     }).catch(next)
 }
 
+// find latest entry
+btcController.latest = (req, res, next) => {
+    Btc.findRecent()
+    .then(eth => {
+        res.json({
+            message: 'retrieved entry',
+            data: { btc }
+        })
+    }).catch(next)
+}
+
 // create new entry
 btcController.create = (req, res) => {
     console.log(req.body, 'from btccontroller#create')
