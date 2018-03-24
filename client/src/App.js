@@ -116,12 +116,10 @@ class App extends Component {
     	// bind btcCoinDesk and renderChart functions
 		this.btcCoinDesk = this.btcCoinDesk.bind(this)
     // this.renderChart = this.renderChart.bind(this)
-    this.sendToDb = this.sendToDb.bind(this)
+    // this.sendToDb = this.sendToDb.bind(this)
   }
   componentWillMount() {
-    // if (this.state.)
-    this.btcCoinDesk()  
-    
+    this.btcCoinDesk()      
   }
   
     // first API fetch, get BTC USD via CoinDesk API
@@ -361,9 +359,9 @@ class App extends Component {
           },
           fetchCheck: true
         })
-        if(this.state.fetchCounter === 10) {
-        this.sendToDb()
-        }
+        // if(this.state.fetchCounter === 10) {
+        // this.sendToDb()
+        // }
         })
   }
   
@@ -427,27 +425,43 @@ class App extends Component {
   //   // }    
   // }
 
-  // <Route exact path='/portfolio' component={Home}/>
 
+//   <Route path='/dash' render={() => <DashController btcValue={this.state.btcValue}
+//   dashCapCoin={this.state.dashCapCoin}
+//   dashKraken={this.state.dashKraken}
+//   dashPolo={this.state.dashPolo} />
+// } />
+// <Route path='/ethereum' render={() => <EthController btcValue={this.state.btcValue}
+//   ethCapCoin={this.state.ethCapCoin}
+//   ethKraken={this.state.ethKraken}
+//   ethPolo={this.state.ethPolo} />
+// } />
+// <Route path='/litecoin' render={() => <LtcController btcValue={this.state.btcValue}
+//   ltcCapCoin={this.state.ethCapCoin}
+//   ltcKraken={this.state.ltcKraken}
+//   ltcPolo={this.state.ltcPolo} />				
+// } />
   render() {
-    // console.log(this.state, 'from render in app.sj')
-    return (
-      <Router>
-      <div className="App">
-      <div className="container">
-        <h1>Crypto Tracker</h1>
-        <Nav />
+		return (
+			<Router>
+				<div className="App">
+				<div className="container">
+				<h1>Crypto Tracker</h1>
+				<Nav />
         <AltController />
-        <div>
-          <Route exact path = '/bitcoin' component={BtcController} />
-          <Route exact path = '/dash' component={DashController} />
-          <Route exact path = '/ethereum' component={EthController} />
-          <Route exact path = '/litecoin' component={LtcController} />
-        </div>      
-      </div>
-      </div>
-      </Router>
-    );
-  }
+				<div>				
+				<Route path='/bitcoin' render={() => <BtcController btcValue={this.state.btcValue} 
+					btcCapCoin={this.state.btcCapCoin}
+					btcKraken={this.state.btcKraken}
+					btcPolo={this.state.btcPolo}
+				  fetchCounter={this.state.fetchCounter} />
+				} />
+
+				</div>
+				</div>
+				</div>
+			</Router>
+		);			
+	}
 }
 export default App;
