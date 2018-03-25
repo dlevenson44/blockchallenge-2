@@ -42,6 +42,25 @@ btcController.sendApiData = (req, res) => {
     // console.log(res.locals, 'res.locals from btcController#sendApiData')
 }
 
+// create new entry
+btcController.create = (req, res) => {
+    console.log(req.body, ' req.body from btcController#create')
+    Btc.create({
+        // time made
+        time_made: Date.now(),
+        // btc data
+        usd: req.body.usd,
+        us_high: req.body.us_high,
+        us_low: req.body.us_low,
+        eur: req.body.eur,
+        eur_high: req.body.eur_high,
+        eur_low: req.body.eur_low,
+        trades: req.body.trades,
+        one_hour: req.body.one_hour,
+        one_day: req.body.one_day,
+        seven_days: req.body.Seven_days,
+    })
+}
 
 btcController.index = (req, res) => {
     res.render('index', {
