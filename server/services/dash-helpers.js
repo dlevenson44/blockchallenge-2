@@ -7,7 +7,7 @@ function getCapCoin(req, res, next) {
     .then(res => res.json())
     // use res.locals to attach data to response object
     .then(fetchRes => {
-        res.locals.btcCapCoin = fetchRes
+        res.locals.dash = fetchRes
         // insert into db
         db.query(`
             INSERT INTO cap_coin (
@@ -40,7 +40,7 @@ function getKraken(req, res, next) {
     .then(res => res.json())
     // use res.locals to attach data to resposne object
     .then(fetchRes => {
-        res.locals.btcKraken = fetchRes
+        res.locals.dashKraken = fetchRes
         db.query(`
             INSERT INTO kraken (
                 time_made,
@@ -72,7 +72,7 @@ function getPolo(req, res, next) {
     .then(res => res.json())
     // use res.locals to attach data to response object
     .then(fetchRes => {
-        res.locals.btcPolo = fetchRes
+        res.locals.dashPolo = fetchRes
         db.query(`
             INSERT INTO polo (
                 time_made,
