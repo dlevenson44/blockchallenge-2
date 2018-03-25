@@ -66,4 +66,4 @@ dashController.index = (req, res) => {
     })
 }
 
-module.exports = btcController
+module.exports = dashController
