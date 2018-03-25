@@ -1,22 +1,6 @@
 require('isomorphic-fetch')
 const db = require('../db/config')
 
-// update existing movie
-// Movie.update = (movie, id) => {
-// 	return db.one(`
-// 		UPDATE movies SET
-// 		title = $1, 
-// 		description = $2, 
-// 		genre = $3,
-// 		image = $4
-// 		WHERE id = $5
-// 		RETURNING *
-// 		`, [movie.title, movie.description, movie.genre, movie.image, id]);
-// }
-
-// UPDATE table_name
-// SET column1 = value1, column2 = value2, ...
-
 // retrieve data from Cap Coin API
 function getCapCoin(req, res, next) {    
     fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=USD')
@@ -74,8 +58,8 @@ function getKraken(req, res, next) {
                 1
             )
             RETURNING *
-        `, [Date.now(), fetchRes.result.XXBTZCAD.o, fetchRes.result.XXBTZCAD.h[0],
-        fetchRes.result.XXBTZCAD.l[0], fetchRes.result.XXBTZCAD.h[0]])
+        `, [Date.now(), fetchRes.result.XXBTZCAD.o, fetchRes.result.XXBTZCAD.h[1],
+        fetchRes.result.XXBTZCAD.l[1], fetchRes.result.XXBTZCAD.h[1]])
         next()
     }).catch(err => {
         res.json({err})
