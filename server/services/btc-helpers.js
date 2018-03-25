@@ -1,30 +1,6 @@
 require('isomorphic-fetch')
 const db = require('../db/config')
 
-// retrieve data from Coin Desk API
-function getCoinDesk(req, res, next) {
-    fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
-    .then(res => res.json())
-    // use res.locals to attach data to response object
-    .then(fetchRes => {
-        res.locals.btcCoinDesk = fetchRes
-        // set btc USD value
-        let btcUsd = fetchRes.bpi.USD.rate
-        // insert into db
-        db.query(`
-            INSERT INTO btc_data (
-                usd
-            ) VALUES (
-                $1
-            ) ON CONFLICT DO NOTHING
-            RETURNING *
-        `, [btcUsd])
-        next()
-    }).catch(err => {
-        res.json({err})
-    })
-}
-
 // update existing movie
 // Movie.update = (movie, id) => {
 // 	return db.one(`
@@ -49,18 +25,27 @@ function getCapCoin(req, res, next) {
     .then(fetchRes => {
         res.locals.btcCapCoin = fetchRes
         // set btc trend values
+        let usd = fetchRes[0].price_usd
         let oneHour = fetchRes[0].percent_change_1h
         let oneDay = fetchRes[0].percent_change_24h
         let oneWeek = fetchRes[0].percent_change_7d
         // insert into db
         db.query(`
-            UPDATE btc_data SET(
-                one_hour = $1,
-                one_day = $2,
-                one_week = $3                
-            ) 
+            INSERT INTO cap_coin (
+                usd,
+                one_hour,
+                one_day,
+                one_week,
+                crypto_id              
+            ) VALUES (
+                $1,
+                $2, 
+                $3,
+                $4,
+                1
+            )
             RETURNING *
-        `, [oneHour, oneDay, oneWeek])
+        `, [usd, oneHour, oneDay, oneWeek])
         next()
     }).catch(err => {
         res.json({err})
@@ -94,7 +79,7 @@ function getPolo(req, res, next) {
 }
 
 module.exports = {
-    getCoinDesk: getCoinDesk,
+    // getCoinDesk: getCoinDesk,
     getCapCoin: getCapCoin,
     getKraken: getKraken,
     getPolo: getPolo,
