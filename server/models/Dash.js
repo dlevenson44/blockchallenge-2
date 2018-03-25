@@ -5,14 +5,14 @@ const db = require('../db/config')
 const Dash = {}
 
 // find all entries
-Btc.findAll = () => {
+Dash.findAll = () => {
     return db.query(`SELECT * FROM tracked_data`)
 }
 
 // find most recent entry
-Btc.findRecent = () => {
+Dash.findRecent = () => {
     return db.query(`SELECT * FROM tracked_data ORDER BY id DESC LIMIT 1`)
 }
 
 
-module.exports = Btc
+module.exports = Dash
