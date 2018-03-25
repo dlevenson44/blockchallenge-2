@@ -24,12 +24,6 @@ function getCapCoin(req, res, next) {
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcCapCoin = fetchRes
-        // set btc trend values
-        let time = Date.now()
-        let usd = fetchRes[0].price_usd
-        let oneHour = fetchRes[0].percent_change_1h
-        let oneDay = fetchRes[0].percent_change_24h
-        let oneWeek = fetchRes[0].percent_change_7d
         // insert into db
         db.query(`
             INSERT INTO cap_coin (
@@ -48,7 +42,8 @@ function getCapCoin(req, res, next) {
                 1
             )
             RETURNING *
-        `, [time, usd, oneHour, oneDay, oneWeek])
+        `, [Date.now(), fetchRes[0].price_usd, 
+        fetchRes[0].percent_change_1h, fetchRes[0].percent_change_24h, fetchRes[0].percent_change_7d])  //[time, usd, oneHour, oneDay, oneWeek])
         next()
     }).catch(err => {
         res.json({err})
@@ -62,6 +57,7 @@ function getKraken(req, res, next) {
     // use res.locals to attach data to resposne object
     .then(fetchRes => {
         res.locals.btcKraken = fetchRes
+        console.log(fetchRes.result.XXBTZCAD.c)
         next()
     }).catch(err => {
         res.json({err})
