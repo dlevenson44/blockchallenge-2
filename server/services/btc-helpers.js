@@ -57,7 +57,25 @@ function getKraken(req, res, next) {
     // use res.locals to attach data to resposne object
     .then(fetchRes => {
         res.locals.btcKraken = fetchRes
-        console.log(fetchRes.result.XXBTZCAD.c)
+        db.query(`
+            INSERT INTO kraken (
+                time_made,
+                eur,
+                eur_low,
+                eur_high,
+                trades,
+                crypto_id
+            ) VALUES (
+                $1,
+                $2,
+                $3,
+                $4,
+                $5,
+                1
+            )
+            RETURNING *
+        `, [Date.now(), fetchRes.result.XXBTZCAD.o, fetchRes.result.XXBTZCAD.h[0],
+        fetchRes.result.XXBTZCAD.l[0], fetchRes.result.XXBTZCAD.h[0]])
         next()
     }).catch(err => {
         res.json({err})
@@ -71,6 +89,7 @@ function getPolo(req, res, next) {
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcPolo = fetchRes
+        console.log(fetchRes)
         next()
     }).catch(err => {
         res.json({err})
