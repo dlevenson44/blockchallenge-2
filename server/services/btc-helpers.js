@@ -89,7 +89,20 @@ function getPolo(req, res, next) {
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcPolo = fetchRes
-        console.log(fetchRes)
+        db.query(`
+            INSERT INTO polo (
+                time_made,
+                us_high,
+                us_low,
+                crypto_id
+            ) VALUES (
+                $1,
+                $2,
+                $3,
+                1
+            )
+            RETURNING *
+        `, [Date.now(), fetchRes.USDT_BTC.high24hr, fetchRes.USDT_BTC.low24hr])
         next()
     }).catch(err => {
         res.json({err})
