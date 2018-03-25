@@ -17,30 +17,38 @@ const db = require('../db/config')
 // UPDATE table_name
 // SET column1 = value1, column2 = value2, ...
 
-// retrieve data from Cap Coin API for BTC USD, and 1h, 1d, and 1w trends
+// retrieve data from Cap Coin API
 function getCapCoin(req, res, next) {    
     fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=USD')
     .then(res => res.json())
     // use res.locals to attach data to response object
     .then(fetchRes => {
         res.locals.btcCapCoin = fetchRes
-        // insert API data into db
+        // set btc trend values
+        let time = Date.now()
+        let usd = fetchRes[0].price_usd
+        let oneHour = fetchRes[0].percent_change_1h
+        let oneDay = fetchRes[0].percent_change_24h
+        let oneWeek = fetchRes[0].percent_change_7d
+        // insert into db
         db.query(`
             INSERT INTO cap_coin (
-                fetchRes[0].price_usd,
-                fetchRes[0].percent_change_1h,
-                fetchRes[0].percent_change_24h,
-                fetchRes[0].percent_change_7d,
+                time_made,
+                usd,
+                one_hour,
+                one_day,
+                one_week,
                 crypto_id              
             ) VALUES (
                 $1,
                 $2, 
                 $3,
                 $4,
+                $5,
                 1
             )
             RETURNING *
-        `, [usd, oneHour, oneDay, oneWeek])
+        `, [time, usd, oneHour, oneDay, oneWeek])
         next()
     }).catch(err => {
         res.json({err})
@@ -54,7 +62,6 @@ function getKraken(req, res, next) {
     // use res.locals to attach data to resposne object
     .then(fetchRes => {
         res.locals.btcKraken = fetchRes
-        // set pulled data to variables
         next()
     }).catch(err => {
         res.json({err})
