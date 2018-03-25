@@ -55,7 +55,7 @@ function getKraken(req, res, next) {
                 $3,
                 $4,
                 $5,
-                1
+                3
             )
             RETURNING *
         `, [Date.now(), fetchRes.result.XETHZEUR.o, fetchRes.result.XETHZEUR.h[1],
@@ -83,7 +83,7 @@ function getPolo(req, res, next) {
                 $1,
                 $2,
                 $3,
-                1
+                3
             )
             RETURNING *
         `, [Date.now(), fetchRes.USDT_ETH.high24hr, fetchRes.USDT_ETH.low24hr])
