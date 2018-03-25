@@ -38,6 +38,9 @@ app.get('/', (req, res) => {
 const btcRouter = require('./routes/btc-routes')
 app.use('/', btcRouter)
 
+const dashRouter = require('./routes/dash-routes')
+app.use('/', dashRouter)
+
 // set error handler
 app.use('*', (req, res) => {
 	res.status(404).send('Invalid Page')
