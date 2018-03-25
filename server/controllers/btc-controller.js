@@ -34,12 +34,12 @@ btcController.latest = (req, res, next) => {
 btcController.sendApiData = (req, res) => {
     res.json({
         message: 'data returned for BTC',
-        btcCoinDesk: res.locals.btcCoinDesk,
+        // btcCoinDesk: res.locals.btcCoinDesk,
         btcCapCoin: res.locals.btcCapCoin,
         btcKraken: res.locals.btcKraken,
         btcPolo: res.locals.btcPolo
     })
-    console.log(res.locals, 'res.locals from btcController#sendApiData')
+    // console.log(res.locals, 'res.locals from btcController#sendApiData')
 }
 
 // create new entry
@@ -64,7 +64,7 @@ btcController.create = (req, res) => {
 
 btcController.index = (req, res) => {
     res.render('index', {
-        btcCoinDesk: res.locals.btcCoinDesk,
+        // btcCoinDesk: res.locals.btcCoinDesk,
         btcCapCoin: res.locals.btcCapCoin,
         btcKraken: res.locals.btcKraken,
         btcPolo: res.locals.btcPolo
