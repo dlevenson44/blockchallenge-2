@@ -27,7 +27,7 @@ function getCapCoin(req, res, next) {
             )
             RETURNING *
         `, [Date.now(), fetchRes[0].price_usd, 
-        fetchRes[0].percent_change_1h, fetchRes[0].percent_change_24h, fetchRes[0].percent_change_7d])  //[time, usd, oneHour, oneDay, oneWeek])
+        fetchRes[0].percent_change_1h, fetchRes[0].percent_change_24h, fetchRes[0].percent_change_7d]) 
         next()
     }).catch(err => {
         res.json({err})
@@ -36,7 +36,7 @@ function getCapCoin(req, res, next) {
 
 // retrieve data from Kraken
 function getKraken(req, res, next) {
-    fetch('https://api.kraken.com/0/public/Ticker?pair=XXBTZCAD')
+    fetch('https://api.kraken.com/0/public/Ticker?pair=DASHEUR')
     .then(res => res.json())
     // use res.locals to attach data to resposne object
     .then(fetchRes => {
