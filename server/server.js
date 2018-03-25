@@ -41,6 +41,12 @@ app.use('/', btcRouter)
 const dashRouter = require('./routes/dash-routes')
 app.use('/', dashRouter)
 
+const ethRouter = require('./routes/eth-routes')
+app.use('/', ethRouter)
+
+// const ltcRouter = require('./routes/ltc-routes')
+// app.use('/', ltcRouter)
+
 // set error handler
 app.use('*', (req, res) => {
 	res.status(404).send('Invalid Page')
