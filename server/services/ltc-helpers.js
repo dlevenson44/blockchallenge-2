@@ -23,7 +23,7 @@ function getCapCoin(req, res, next) {
                 $3,
                 $4,
                 $5,
-                3
+                4
             )
             RETURNING *
         `, [Date.now(), fetchRes[0].price_usd, 
@@ -55,7 +55,7 @@ function getKraken(req, res, next) {
                 $3,
                 $4,
                 $5,
-                3
+                4
             )
             RETURNING *
         `, [Date.now(), fetchRes.result.XLTCZUSD.o, fetchRes.result.XLTCZUSD.h[1],
@@ -83,7 +83,7 @@ function getPolo(req, res, next) {
                 $1,
                 $2,
                 $3,
-                3
+                4
             )
             RETURNING *
         `, [Date.now(), fetchRes.USDT_LTC.high24hr, fetchRes.USDT_LTC.low24hr])
