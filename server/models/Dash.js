@@ -15,7 +15,9 @@ Dash.findRecent = () => {
         SELECT usd, one_hour, one_day, one_week, eur,
         eur_low, eur_high, trades, us_high, us_low
         FROM cap_coin, kraken, polo
-        WHERE cap_coin.crypto_id = kraken.crypto_id
+        WHERE cap_coin.crypto_id = 2
+        AND kraken.crypto_id = 2
+        AND polo.crypto_id = 2  
         ORDER BY cap_coin.id DESC LIMIT 1
     `)
 }
