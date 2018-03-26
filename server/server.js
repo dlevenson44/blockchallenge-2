@@ -47,6 +47,9 @@ app.use('/', ethRouter)
 const ltcRouter = require('./routes/ltc-routes')
 app.use('/', ltcRouter)
 
+// const ltcRouter = require('./routes/ltc-routes')
+// app.use('/', ltcRouter)
+
 // set error handler
 app.use('*', (req, res) => {
 	res.status(404).send('Invalid Page')

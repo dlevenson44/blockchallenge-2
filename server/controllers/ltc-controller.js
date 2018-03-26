@@ -6,31 +6,44 @@ const ltcController = {}
 
 // pull all entries from table
 ltcController.index = (req, res, next) => {
-    Ltc.findAll()
-    .then(ltc => {
+    LTC.findAll()
+    .then(crypto => {
         res.json({
             message: 'retrieved data',
-            data: { ltc }
+            data: { crypto }
         })
-    }).catch(next)
+    })
+    .catch(next)
 }
 
 // find latest entry
 ltcController.latest = (req, res, next) => {
-    Ltc.findRecent()
-    .then(ltc => {
+    LTC.findRecent()
+    .then(crypto => {
         res.json({
             message: 'retrieved entry',
-            data: { ltc }
+            data: { crypto }
         })
     }).catch(next)
 }
 
+// send api data
+ltcController.sendApiData = (req, res) => {
+    res.json({
+        message: 'data returned for LTC',
+        ltcCapCoin: res.locals.ltcCapCoin,
+        ltcKraken: res.locals.ltcKraken,
+        ltcPolo: res.locals.ltcPolo
+    })
+}
+
 // create new entry
 ltcController.create = (req, res) => {
-    console.log(req.body, 'from ltccontroller#create')
+    console.log(req.body, ' req.body from ltcController#create')
     Ltc.create({
+        // time made
         time_made: Date.now(),
+        // ltc data
         usd: req.body.usd,
         us_high: req.body.us_high,
         us_low: req.body.us_low,
@@ -40,7 +53,15 @@ ltcController.create = (req, res) => {
         trades: req.body.trades,
         one_hour: req.body.one_hour,
         one_day: req.body.one_day,
-        one_week: req.body.one_week
+        seven_days: req.body.Seven_days,
+    })
+}
+
+ltcController.index = (req, res) => {
+    res.render('index', {
+        ltcCapCoin: res.locals.ltcCapCoin,
+        ltcKraken: res.locals.ltcKraken,
+        ltcPolo: res.locals.ltcPolo
     })
 }
 
