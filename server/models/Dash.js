@@ -2,7 +2,7 @@
 const db = require('../db/config')
 
 // initiate model object
-const Btc = {}
+const Dash = {}
 
 // find all entries
 Dash.findAll = () => {
