@@ -1,6 +1,15 @@
+// import dependencies
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
+
+// import components
+import AltController from './components/AltController'
+import BtcController from './components/BtcController'
+import DashController from './components/DashController'
+import EthController from './components/EthController'
+import LtcController from './components/LtcController'
+import Nav from './components/Nav'
 
 class App extends Component {
   constructor(props) {
@@ -193,15 +202,23 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+        <div className="container">
+        <h1>Crypto Tracker</h1>
+        <Nav />
+        <AltController btc={this.state.btc.usd} dash={this.state.dash.usd}
+          eth={this.state.eth.usd} ltc={this.state.ltc.usd} />
+        <div>
+        <Route path='/bitcoin' render={() => <BtcController btc={this.state.btc} /> } />
+        <Route path='/dash' render={() => <DashController dash={this.state.dash} /> } />
+        <Route path='/ethereum' render={() => <EthController eth={this.state.eth} /> } />
+        <Route path='/litecoin' render={() => <LtcController ltc={this.state.ltc} /> } />
+
+        </div>
+        </div>
+        </div>
+      </Router>
     );
   }
 }
