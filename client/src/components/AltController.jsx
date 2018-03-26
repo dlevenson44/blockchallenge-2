@@ -61,10 +61,10 @@ class AltController extends Component {
                     }
                 }
                 // convert string to number
-                let btcUsd = parseFloat(btcContainer)
-                let dashUsd = parseFloat(dashContainer)
-                let ethUsd = parseFloat(ethContainer)
-                let ltcUsd = parseFloat(ltcContainer)
+                // let btcUsd = parseFloat(btcContainer)
+                // let dashUsd = parseFloat(dashContainer)
+                // let ethUsd = parseFloat(ethContainer)
+                // let ltcUsd = parseFloat(ltcContainer)
                 // set alt per btc to variable
                 let dashPer = (btcContainer / dashContainer).toPrecision(4)
                 let ethPer = (btcContainer / ethContainer).toPrecision(4)

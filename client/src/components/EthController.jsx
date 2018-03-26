@@ -5,84 +5,112 @@ class EthController extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            usd: 0,
-            usHigh: 0,
-            usLow: 0,
-            eur: 0,
-            eurHigh: 0,
-            eurLow: 0,
-            trades: 0,
-            oneHour: 0,
-            oneDay: 0,
-            oneWeek: 0,
+            usd: '' || this.props.ethCapCoin.usd,
+            usHigh: '' || this.props.ethPolo.high24hr,
+            usLow: '' || this.props.ethPolo.low24hr,
+            eur: '' || this.props.ethKraken.eur,
+            eurHigh: '' || this.props.ethKraken.trends.high,
+            eurLow: ''|| this.props.ethKraken.trends.low,
+            trades: '' || this.props.ethKraken.trends.trades,
+            oneHour: '' || this.props.ethCapCoin.trends.oneHour,
+            oneDay: '' || this.props.ethCapCoin.trends.oneHour,
+            oneWeek: '' || this.props.ethCapCoin.trends.oneHour,
             fetchStatus: false,
+            visited: false,
         }
-        this.getData = this.getData.bind(this)
+        // this.getData = this.getData.bind(this)
         this.renderData = this.renderData.bind(this)
+        this.sendToDb = this.sendToDb.bind(this)
     }
 
+    componentDidUpdate() {
+        this.renderData()
+    }
+
+    sendToDb() {        
+        if (this.props.fetchCounter === 10) {
+            fetch('/api/eth', {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify({
+                    usd: (this.props.ethCapCoin.usd).substring(0, 6),
+                    us_high: (this.props.ethPolo.high24hr).substring(0, 6),
+                    us_low: (this.props.ethPolo.low24hr).substring(0, 6),
+                    eur: (this.props.ethKraken.eur).substring(0, 6),
+                    eur_high: (this.props.ethKraken.trends.high).substring(0, 6),
+                    eur_low: (this.props.ethKraken.trends.low).substring(0, 6),
+                    trades: this.props.ethKraken.trends.trades,
+                    one_hour: this.props.ethCapCoin.trends.oneHour,
+                    one_day: this.props.ethCapCoin.trends.oneDay,
+                    one_week: this.props.ethCapCoin.trends.oneWeek,
+                }),
+            }).then(res => res.json())
+            .catch(err => console.log(err))
+        }
+        this.getData()
+    }
+
+    
     getData() {
         if (this.state.fetchStatus === false) {
-            console.log('fetched')
-            fetch('/api/crypto')
+            fetch('/api/eth')
             .then(res => res.json())
             .then(res => {
+                // set state
+                console.log(res.data.eth[0])
                 this.setState({
-                    usd: res.data.crypto[0].eth_usd,
-                    usHigh: res.data.crypto[0].eth_us_high,
-                    usLow: res.data.crypto[0].eth_us_low,
-                    eur: res.data.crypto[0].eth_eur,
-                    eurHigh: res.data.crypto[0].eth_eur_high,
-                    eurLow: res.data.crypto[0].eth_eur_low,
-                    trades: res.data.crypto[0].eth_trades,
-                    oneHour: res.data.crypto[0].eth_one_hour,
-                    oneDay: res.data.crypto[0].eth_24_hours,
-                    oneWeek: res.data.crypto[0].eth_7_days,
+                    usd: res.data.eth[0].usd,
+                    usHigh: res.data.eth[0].us_high,
+                    usLow: res.data.eth[0].us_low,
+                    eur: res.data.eth[0].eur,
+                    eurHigh: res.data.eth[0].eur_high,
+                    eurLow: res.data.eth[0].eur_low,
+                    trades: res.data.eth[0].trades,
+                    oneHour: res.data.eth[0].one_hour,
+                    oneDay: res.data.eth[0].one_day,
+                    oneWeek: res.data.eth[0].one_week,
                     fetchStatus: true,
                 })
             })
             .catch(err => console.log(err))
         }
+        this.renderData()
     }
 
     renderData() {
-        if (this.state.fetchStatus === true) {
-            return(
-                <div className="crypto-container">
-                <h5>Trends:</h5>
-                    <p>{this.state.trades} trades in the last 24 hours</p>
-                    <p>{this.state.oneHour}% change in last hour</p>
-                    <p>{this.state.oneDay}% change in last 24 hours</p>
-                    <p>{this.state.oneWeek}% change in last 7 days</p>                
-                <h5>ETH US Market Info</h5>
-                    <p>${this.state.usd} per ETH</p>
-                    <p>${this.state.usHigh} is the 24 hour high</p>
-                    <p>${this.state.usLow} is the 24 hour low</p>                            
-                <h5>ETH EU Market Info</h5>
-                    <p>€{this.state.eur} per ETH</p>
-                    <p>€{this.state.eurHigh} is the 24 hour high</p>
-                    <p>€{this.state.eurLow} is the 24 hour low</p>            
-            </div>
-            )
-
-        } else {
-            return(
-                <div>
-                    <p>Loading Data</p>
-                </div>
-            )
-        }
+        return(
+        <div className="crypto-container">
+            <h5>Trends:</h5>
+                <p>{this.state.trades} trades in the last 24 hours</p>
+                <p>{this.state.oneHour}% change in last hour</p>
+                <p>{this.state.oneDay}% change in last 24 hours</p>
+                <p>{this.state.oneWeek}% change in last 7 days</p>                
+            <h5>ETH US Market Info</h5>
+                <p>${this.state.usd} per ETH</p>
+                <p>${(this.state.usHigh)} is the 24 hour high</p>
+                <p>${(this.state.usLow)} is the 24 hour low</p>                            
+            <h5>ETH EU Market Info</h5>
+                <p>€{(this.state.eur)} per ETH</p>
+                <p>€{(this.state.eurHigh)} is the 24 hour high</p>
+                <p>€{(this.state.eurLow)} is the 24 hour low</p>            
+        </div>
+        )
     }
 
     render() {
-        this.getData()
-        // console.log(this.state)
+        this.sendToDb()
+        
         return(
             <div className="crypto-container">
-                {this.renderData()}
+                {this.renderData()}                
             </div>
         )
     }
 }
 
 export default EthController
+
+
+
