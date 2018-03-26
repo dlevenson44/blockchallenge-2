@@ -19,7 +19,7 @@ btcController.index = (req, res, next) => {
     .catch(next)
 }
 
-// find latest entry
+// find latest cap coin entry
 btcController.latest = (req, res, next) => {
     Btc.findRecent()
     .then(crypto => {
