@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 
-// import components
+// import chart components
+import ChartController from './components/ChartController'
+
+// import  altcoin and nav components
 import AltController from './components/AltController'
 import BtcController from './components/BtcController'
 import DashController from './components/DashController'
@@ -210,6 +213,8 @@ class App extends Component {
         <AltController btc={this.state.btc.usd} dash={this.state.dash.usd}
           eth={this.state.eth.usd} ltc={this.state.ltc.usd} />
         <div>
+        <Route exact path='/' render={() => <ChartController btc={this.state.btc} dash={this.state.dash}
+        eth={this.state.eth} ltc={this.state.ltc} puller={this.state.puller} /> } />
         <Route path='/bitcoin' render={() => <BtcController btc={this.state.btc} /> } />
         <Route path='/dash' render={() => <DashController dash={this.state.dash} /> } />
         <Route path='/ethereum' render={() => <EthController eth={this.state.eth} /> } />
