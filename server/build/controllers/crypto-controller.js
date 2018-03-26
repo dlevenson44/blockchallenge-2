@@ -1,35 +1,34 @@
+'use strict';
+
 // import model
-const Crypto = require('../models/Crypto')
+var Crypto = require('../models/Crypto');
 
 // initiate controller object
-const cryptoController = {}
+var cryptoController = {};
 
 // pull all entries from table
-cryptoController.index = (req, res, next) => {
-    Crypto.findAll()
-    .then(crypto => {
+cryptoController.index = function (req, res, next) {
+    Crypto.findAll().then(function (crypto) {
         res.json({
             message: 'retrieved data',
-            data: { crypto }
-        })
-    })
-    .catch(next)
-}
+            data: { crypto: crypto }
+        });
+    }).catch(next);
+};
 
 // find latest entry
-cryptoController.latest = (req, res, next) => {
-    Crypto.findRecent()
-    .then(crypto => {
+cryptoController.latest = function (req, res, next) {
+    Crypto.findRecent().then(function (crypto) {
         res.json({
             message: 'retrieved entry',
-            data: { crypto }
-        })
-    }).catch(next)
-}
+            data: { crypto: crypto }
+        });
+    }).catch(next);
+};
 
 // create new entry
-cryptoController.create = (req, res) => {
-    console.log(req.body, 'from cryptocontroller#create')
+cryptoController.create = function (req, res) {
+    console.log(req.body, 'from cryptocontroller#create');
     Crypto.create({
         // time made
         time_made: Date.now(),
@@ -76,8 +75,8 @@ cryptoController.create = (req, res) => {
         ltc_trades: req.body.ltc_trades,
         ltc_one_hour: req.body.ltc_one_hour,
         ltc_24_hours: req.body.ltc_24_hours,
-        ltc_7_days: req.body.ltc_7_days,
-    })
-}
+        ltc_7_days: req.body.ltc_7_days
+    });
+};
 
-module.exports = cryptoController
+module.exports = cryptoController;

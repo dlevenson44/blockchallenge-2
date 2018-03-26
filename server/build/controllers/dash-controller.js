@@ -1,45 +1,44 @@
+'use strict';
+
 // import model
-const Dash = require('../models/Dash')
+var Dash = require('../models/Dash');
 
 // initiate controller object
-const dashController = {}
+var dashController = {};
 
 // pull all entries from table
-dashController.index = (req, res, next) => {
-    Dash.findAll()
-    .then(crypto => {
+dashController.index = function (req, res, next) {
+    Dash.findAll().then(function (crypto) {
         res.json({
             message: 'retrieved data',
-            data: { crypto }
-        })
-    })
-    .catch(next)
-}
+            data: { crypto: crypto }
+        });
+    }).catch(next);
+};
 
 // find latest entry
-dashController.latest = (req, res, next) => {
-    Dash.findRecent()
-    .then(crypto => {
+dashController.latest = function (req, res, next) {
+    Dash.findRecent().then(function (crypto) {
         res.json({
             message: 'retrieved entry',
-            data: { crypto }
-        })
-    }).catch(next)
-}
+            data: { crypto: crypto }
+        });
+    }).catch(next);
+};
 
 // send api data
-dashController.sendApiData = (req, res) => {
+dashController.sendApiData = function (req, res) {
     res.json({
         message: 'data returned for Dash',
         dashCapCoin: res.locals.dashCapCoin,
         dashKraken: res.locals.dashKraken,
         dashPolo: res.locals.dashPolo
-    })
-}
+    });
+};
 
 // create new entry
-dashController.create = (req, res) => {
-    console.log(req.body, ' req.body from dashController#create')
+dashController.create = function (req, res) {
+    console.log(req.body, ' req.body from dashController#create');
     Dash.create({
         // time made
         time_made: Date.now(),
@@ -53,17 +52,17 @@ dashController.create = (req, res) => {
         trades: req.body.trades,
         one_hour: req.body.one_hour,
         one_day: req.body.one_day,
-        seven_days: req.body.Seven_days,
-    })
-}
+        seven_days: req.body.Seven_days
+    });
+};
 
-dashController.index = (req, res) => {
+dashController.index = function (req, res) {
     res.render('index', {
         // dashCoinDesk: res.locals.dashCoinDesk,
         dashCapCoin: res.locals.dashCapCoin,
         dashKraken: res.locals.dashKraken,
         dashPolo: res.locals.dashPolo
-    })
-}
+    });
+};
 
-module.exports = dashController
+module.exports = dashController;

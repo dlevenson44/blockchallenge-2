@@ -1,63 +1,41 @@
-DROP TABLE IF EXISTS btc_data;
-CREATE TABLE IF NOT EXISTS btc_data(
+CREATE TABLE IF NOT EXISTS currency(
+    id SERIAL PRIMARY KEY,
+    cryptocurrency VARCHAR
+);
+
+DROP TABLE IF EXISTS cap_coin;
+CREATE TABLE IF NOT EXISTS cap_coin(
     id SERIAL PRIMARY KEY,
     time_made BIGINT,
     usd TEXT,
-    us_high TEXT,
-    us_low TEXT,
-    eur TEXT,
-    eur_high TEXT,
-    eur_low TEXT,
-    trades TEXT,
     one_hour TEXT,
     one_day TEXT,
     one_week TEXT
 );
 
-DROP TABLE IF EXISTS dash_data;
-CREATE TABLE IF NOT EXISTS dash_data(
+DROP TABLE IF EXISTS kraken;
+CREATE TABLE IF NOT EXISTS kraken(
     id SERIAL PRIMARY KEY,
     time_made BIGINT,
-    usd TEXT,
-    us_high TEXT,
-    us_low TEXT,
     eur TEXT,
-    eur_high TEXT,
     eur_low TEXT,
-    trades TEXT,
-    one_hour TEXT,
-    one_day TEXT,
-    one_week TEXT
+    eur_high TEXT,
+    trades TEXT
 );
 
-DROP TABLE IF EXISTS eth_data;
-CREATE TABLE IF NOT EXISTS eth_data(
+DROP TABLE IF EXISTS polo;
+CREATE TABLE IF NOT EXISTS polo(
     id SERIAL PRIMARY KEY,
     time_made BIGINT,
-    usd TEXT,
     us_high TEXT,
-    us_low TEXT,
-    eur TEXT,
-    eur_high TEXT,
-    eur_low TEXT,
-    trades TEXT,
-    one_hour TEXT,
-    one_day TEXT,
-    one_week TEXT
+    us_low TEXT
 );
 
-DROP TABLE IF EXISTS ltc_data;
-CREATE TABLE IF NOT EXISTS ltc_data(
-    id SERIAL PRIMARY KEY,
-    time_made BIGINT,
-    usd TEXT,
-    us_high TEXT,
-    us_low TEXT,
-    eur TEXT,
-    eur_high TEXT,
-    eur_low TEXT,
-    trades TEXT,
-    one_hour TEXT,
-    one_day TEXT,
-    one_week TEXT
-);
+ALTER TABLE cap_coin
+ADD COLUMN crypto_id INTEGER REFERENCES currency(id);
+
+ALTER TABLE kraken
+ADD COLUMN crypto_id INTEGER REFERENCES currency(id);
+
+ALTER TABLE polo
+ADD COLUMN crypto_id INTEGER REFERENCES currency(id);
