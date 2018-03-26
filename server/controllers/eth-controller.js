@@ -6,7 +6,7 @@ const ethController = {}
 
 // pull all entries from table
 ethController.index = (req, res, next) => {
-    th.findAll()
+    Eth.findAll()
     .then(crypto => {
         res.json({
             message: 'retrieved data',
@@ -18,7 +18,7 @@ ethController.index = (req, res, next) => {
 
 // find latest entry
 ethController.latest = (req, res, next) => {
-    th.findRecent()
+    Eth.findRecent()
     .then(crypto => {
         res.json({
             message: 'retrieved entry',
