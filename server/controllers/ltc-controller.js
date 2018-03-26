@@ -6,7 +6,7 @@ const ltcController = {}
 
 // pull all entries from table
 ltcController.index = (req, res, next) => {
-    LTC.findAll()
+    Ltc.findAll()
     .then(crypto => {
         res.json({
             message: 'retrieved data',
@@ -18,7 +18,7 @@ ltcController.index = (req, res, next) => {
 
 // find latest entry
 ltcController.latest = (req, res, next) => {
-    LTC.findRecent()
+    Ltc.findRecent()
     .then(crypto => {
         res.json({
             message: 'retrieved entry',
