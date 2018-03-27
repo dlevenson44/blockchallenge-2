@@ -4,18 +4,6 @@ const Eth = require('../models/Eth')
 // initiate controller object
 const ethController = {}
 
-// pull all entries from table
-ethController.index = (req, res, next) => {
-    Eth.findAll()
-    .then(crypto => {
-        res.json({
-            message: 'retrieved data',
-            data: { crypto }
-        })
-    })
-    .catch(next)
-}
-
 // find latest entry
 ethController.latest = (req, res, next) => {
     Eth.findRecent()
@@ -54,14 +42,6 @@ ethController.create = (req, res) => {
         one_hour: req.body.one_hour,
         one_day: req.body.one_day,
         seven_days: req.body.Seven_days,
-    })
-}
-
-ethController.index = (req, res) => {
-    res.render('index', {
-        ethCapCoin: res.locals.ethCapCoin,
-        ethKraken: res.locals.ethKraken,
-        ethPolo: res.locals.ethPolo
     })
 }
 

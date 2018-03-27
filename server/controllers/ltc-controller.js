@@ -4,18 +4,6 @@ const Ltc = require('../models/Ltc')
 // initiate controller object
 const ltcController = {}
 
-// pull all entries from table
-ltcController.index = (req, res, next) => {
-    Ltc.findAll()
-    .then(crypto => {
-        res.json({
-            message: 'retrieved data',
-            data: { crypto }
-        })
-    })
-    .catch(next)
-}
-
 // find latest entry
 ltcController.latest = (req, res, next) => {
     Ltc.findRecent()
@@ -54,14 +42,6 @@ ltcController.create = (req, res) => {
         one_hour: req.body.one_hour,
         one_day: req.body.one_day,
         seven_days: req.body.Seven_days,
-    })
-}
-
-ltcController.index = (req, res) => {
-    res.render('index', {
-        ltcCapCoin: res.locals.ltcCapCoin,
-        ltcKraken: res.locals.ltcKraken,
-        ltcPolo: res.locals.ltcPolo
     })
 }
 

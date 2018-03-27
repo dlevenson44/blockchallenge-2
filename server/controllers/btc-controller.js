@@ -7,18 +7,6 @@ const Btc = require('../models/Btc')
 // initiate controller object
 const btcController = {}
 
-// pull all entries from table
-btcController.index = (req, res, next) => {
-    Btc.findAll()
-    .then(crypto => {
-        res.json({
-            message: 'retrieved data',
-            data: { crypto }
-        })
-    })
-    .catch(next)
-}
-
 // find latest cap coin entry
 btcController.latest = (req, res, next) => {
     Btc.findRecent()
@@ -62,13 +50,5 @@ btcController.create = (req, res) => {
     })
 }
 
-btcController.index = (req, res) => {
-    res.render('index', {
-        // btcCoinDesk: res.locals.btcCoinDesk,
-        btcCapCoin: res.locals.btcCapCoin,
-        btcKraken: res.locals.btcKraken,
-        btcPolo: res.locals.btcPolo
-    })
-}
 
 module.exports = btcController

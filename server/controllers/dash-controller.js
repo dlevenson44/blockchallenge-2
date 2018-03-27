@@ -4,18 +4,6 @@ const Dash = require('../models/Dash')
 // initiate controller object
 const dashController = {}
 
-// pull all entries from table
-dashController.index = (req, res, next) => {
-    Dash.findAll()
-    .then(crypto => {
-        res.json({
-            message: 'retrieved data',
-            data: { crypto }
-        })
-    })
-    .catch(next)
-}
-
 // find latest entry
 dashController.latest = (req, res, next) => {
     Dash.findRecent()
@@ -54,15 +42,6 @@ dashController.create = (req, res) => {
         one_hour: req.body.one_hour,
         one_day: req.body.one_day,
         seven_days: req.body.Seven_days,
-    })
-}
-
-dashController.index = (req, res) => {
-    res.render('index', {
-        // dashCoinDesk: res.locals.dashCoinDesk,
-        dashCapCoin: res.locals.dashCapCoin,
-        dashKraken: res.locals.dashKraken,
-        dashPolo: res.locals.dashPolo
     })
 }
 
