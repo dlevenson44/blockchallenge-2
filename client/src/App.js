@@ -19,14 +19,17 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      puller: false,
+      // count how many fetches have been made
       fetcher: 0,
+      // has alt per btc been calculated?
       calculated: false,
+      // alt per btc values
       alt: {
         dash: 0,
         eth: 0,
         ltc: 0,
       },
+      // btc values
       btc: {
         usd: '',
         usHigh: '',
@@ -39,6 +42,7 @@ class App extends Component {
         oneWeek: '',
         trades: ''
       },
+      // dash values
       dash: {
         usd: '',
         usHigh: '',
@@ -51,6 +55,7 @@ class App extends Component {
         oneWeek: '',
         trades: ''
       },
+      // eth values
       eth: {
         usd: '',
         usHigh: '',
@@ -63,6 +68,7 @@ class App extends Component {
         oneWeek: '',
         trades: ''
       },
+      // ltc values
       ltc: {
         usd: '',
         usHigh: '',
@@ -76,6 +82,7 @@ class App extends Component {
         trades: ''
       },
     }
+    // bind functions
     this.fetchBtc = this.fetchBtc.bind(this)
     this.renderChart = this.renderChart.bind(this)
   }
@@ -84,6 +91,7 @@ class App extends Component {
     this.fetchBtc()
   }
 
+  // fetch BTC data from API
   fetchBtc() {
       fetch('/btc', {
         method: 'GET',
@@ -92,6 +100,7 @@ class App extends Component {
       this.fetchDash()
   }
 
+  // fetch DASH data from API
   fetchDash() {
     fetch('/dash', {
       method: 'GET',
@@ -100,6 +109,7 @@ class App extends Component {
     this.fetchEth()
   }
 
+  // fetch ETH data from API
   fetchEth() {
     fetch('/eth', {
       method: 'GET',
@@ -108,6 +118,7 @@ class App extends Component {
     this.fetchLtc()
   }
 
+  // fetch LTC data from API
   fetchLtc() {
     fetch('/ltc', {
       method: 'GET',
@@ -116,8 +127,8 @@ class App extends Component {
     this.getBtc()
   }
 
+  // set BTC data to state
   getBtc() {
-    if (this.state.puller === false) {
     fetch('/api/btc', {
       method: 'GET',
     }).then(res => res.json())
@@ -141,9 +152,9 @@ class App extends Component {
       })
     })
     this.getDash()
-    }
   }
 
+  // set DASH data to state
   getDash() {
     fetch('/api/dash', {
       method: 'GET',
@@ -168,7 +179,8 @@ class App extends Component {
     })
     this.getEth()
   }
-
+  
+  // set ETH data to state
   getEth() {
     fetch('/api/eth', {
       method: 'GET',
@@ -194,6 +206,7 @@ class App extends Component {
     this.getLtc()
   }
 
+  // set LTC data to state
   getLtc() {
     fetch('/api/ltc', {
       method: 'GET',
@@ -218,9 +231,9 @@ class App extends Component {
     })    
   }
 
+  // calculate alt per BTC after all fetches have been made
   calculateData() {
     if ((this.state.fetcher === 4) && this.state.calculated === false) {
-      console.log('calculating')
       // convert state from string to number
       let btc = parseFloat(this.state.btc.usd)
       let dash = parseFloat(this.state.dash.usd)
@@ -243,7 +256,7 @@ class App extends Component {
   }
 
   renderChart() {
-    // render chart after all fetchers made
+    // render chart after alt per btc after it's been calculated
     if (this.state.calculated === true) {
       return(
         <div>
@@ -287,8 +300,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-  // <Route exact path='/' render={() => <ChartController btc={this.state.btc} dash={this.state.dash}
-  //       eth={this.state.eth} ltc={this.state.ltc} puller={this.state.puller} /> } />
