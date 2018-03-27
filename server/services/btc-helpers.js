@@ -94,7 +94,6 @@ function getPolo(req, res, next) {
 }
 
 module.exports = {
-    // getCoinDesk: getCoinDesk,
     getCapCoin: getCapCoin,
     getKraken: getKraken,
     getPolo: getPolo,
