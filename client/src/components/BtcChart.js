@@ -6,9 +6,9 @@ class BtcChart extends Component {
         super(props)
         this.state = {            
             chartData: {
-                labels: [`${(this.props.alt.dashPerBtc).toPrecision(4)} DASH per BTC`, 
-                    `${(this.props.alt.ethPerBtc).toPrecision(4)} ETH per BTC`, 
-                    `${(this.props.alt.ltcPerBtc).toPrecision(4)} LTC per BTC`],
+                labels: [`${(this.props.alt.dash).toPrecision(4)} DASH per BTC`, 
+                    `${(this.props.alt.eth).toPrecision(4)} ETH per BTC`, 
+                    `${(this.props.alt.ltc).toPrecision(4)} LTC per BTC`],
                 datasets: [
                     {
                         label: 'BitCoin per AltCoin',
@@ -28,8 +28,6 @@ class BtcChart extends Component {
             }            
         }
     }
-
-    calculateData()
 
     render() {                
         return(

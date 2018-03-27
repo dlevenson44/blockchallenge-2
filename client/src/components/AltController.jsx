@@ -2,7 +2,6 @@
 import React from 'react'
 
 const AltController = (props) => {
-    console.log(props)
     // convert props to number type
     let btc = parseFloat(props.btc)
     let dash = parseFloat(props.dash)
