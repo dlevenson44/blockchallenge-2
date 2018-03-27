@@ -13,9 +13,9 @@ class BtcChart extends Component {
                     {
                         label: 'BitCoin per AltCoin',
                         data: [
-                            (this.props.alt.dashPerBtc),
-                            this.props.alt.ethPerBtc,
-                            this.props.alt.ltcPerBtc
+                            (this.props.alt.dash),
+                            this.props.alt.eth,
+                            this.props.alt.ltc
                         ],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.6)',
@@ -27,9 +27,11 @@ class BtcChart extends Component {
                 ]
             }            
         }
+
     }
 
-    render() {                
+    render() {      
+              
         return(
             <div className="chart-container">
                 <Doughnut
