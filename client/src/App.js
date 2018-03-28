@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 
+// import address creation component
+import CreateAddress from './components/CreateAddress'
+
 // import chart components
 import ChartController from './components/ChartController'
 import BtcChart from './components/BtcChart'
@@ -282,6 +285,7 @@ class App extends Component {
         <div className="container">
         <h1>Crypto Tracker</h1>
         <Nav />
+        <CreateAddress />
         <AltController btc={this.state.btc.usd} dash={this.state.dash.usd}
           eth={this.state.eth.usd} ltc={this.state.ltc.usd} />
         <div>
