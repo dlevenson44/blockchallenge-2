@@ -27,6 +27,10 @@ const Nav = () => {
                     <Link to="/litecoin" className="nav link" id="nav-spec">LiteCoin</Link>
                 </li>                                                  
 
+                <li className="nav-item" id="nav-li">
+                    <Link to="/create" className="nav link" id="nav-spec">Create BTC Address</Link>
+                </li>
+
                 </ul>
             </div>
             <div className="hidden-lg-up">
@@ -39,7 +43,8 @@ const Nav = () => {
                     <Link to="/bitcoin" className="nav link">BitCoin</Link>
                     <Link to="/dash" className="nav link">DASH</Link>                    
                     <Link to="/ethereum" className="nav link">Ethereum</Link>
-                    <Link to="/litecoin" className="nav link">LiteCoin</Link>                    
+                    <Link to="/litecoin" className="nav link">LiteCoin</Link>  
+                    <Link to="/create" className="nav link">Create BTC Address</Link>                  
                 </div>
                 </div>
             </div>
