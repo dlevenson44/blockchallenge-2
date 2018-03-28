@@ -42,8 +42,7 @@ class CreateAddress extends Component {
                 <p>Address:  {this.state.address} </p>                
                 <p>Public Key:   {this.state.public}   </p>
                 <p>Private Key (Hex Encoded):  {this.state.private}  </p>
-                <p>Private Key (Wif Encoded):   {this.state.wif} </p>
-                
+                <p>Private Key (Wif Encoded):   {this.state.wif} </p>                
             </div>
         )
     }

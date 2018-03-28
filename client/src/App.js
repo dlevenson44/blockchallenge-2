@@ -285,7 +285,6 @@ class App extends Component {
         <div className="container">
         <h1>Crypto Tracker</h1>
         <Nav />
-        <CreateAddress />
         <AltController btc={this.state.btc.usd} dash={this.state.dash.usd}
           eth={this.state.eth.usd} ltc={this.state.ltc.usd} />
         <div>
@@ -294,7 +293,7 @@ class App extends Component {
         <Route path='/dash' render={() => <DashController dash={this.state.dash} /> } />
         <Route path='/ethereum' render={() => <EthController eth={this.state.eth} /> } />
         <Route path='/litecoin' render={() => <LtcController ltc={this.state.ltc} /> } />
-
+        <Route path='/create' render={() => <CreateAddress /> } />
         </div>
         </div>
         </div>
