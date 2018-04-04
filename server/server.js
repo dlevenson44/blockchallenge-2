@@ -35,6 +35,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 
+const cryptoRouter = require('./routes/crypto-routes')
+app.use('/', cryptoRouter)
+
 const btcRouter = require('./routes/btc-routes')
 app.use('/', btcRouter)
 
