@@ -22,8 +22,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // count how many fetches have been made
-      fetcher: 0,
+      // has data been fetched?
+      fetched: false,
       // has alt per btc been calculated?
       calculated: false,
       // alt per btc values
@@ -86,7 +86,6 @@ class App extends Component {
       },
     }
     // bind functions
-    // this.fetchBtc = this.fetchBtc.bind(this)
     this.fetchData = this.fetchData.bind(this)
     // this.renderChart = this.renderChart.bind(this)
   }
@@ -151,34 +150,35 @@ class App extends Component {
           eur: res.data[7].result.XLTCZUSD.c[0],
           eurLow: res.data[7].result.XLTCZUSD.l[1],
           eurHigh: res.data[7].result.XLTCZUSD.h[1]
-        }
+        },
+        fetched: true
       })
     })
   }
 
   // calculate alt per BTC after all fetches have been made
-  // calculateData() {
-  //   if ((this.state.fetcher === 4) && this.state.calculated === false) {
-  //     // convert state from string to number
-  //     let btc = parseFloat(this.state.btc.usd)
-  //     let dash = parseFloat(this.state.dash.usd)
-  //     let eth = parseFloat(this.state.eth.usd)
-  //     let ltc = parseFloat(this.state.ltc.usd)
-  //     // calculate alt per btc
-  //     let dpb = (btc / dash)
-  //     let epb = (btc / eth)
-  //     let lpb = (btc / ltc)
-  //     // set state to calculated values
-  //     this.setState({
-  //       alt: {
-  //         dash: dpb,
-  //         eth: epb,
-  //         ltc: lpb
-  //       },
-  //       calculated: true,
-  //     })
-  //   }    
-  // }
+  calculateData() {
+    if ((this.state.fetched === true) && this.state.calculated === false) {
+      // convert state from string to number
+      let btc = parseFloat(this.state.btc.usd)
+      let dash = parseFloat(this.state.dash.usd)
+      let eth = parseFloat(this.state.eth.usd)
+      let ltc = parseFloat(this.state.ltc.usd)
+      // calculate alt per btc
+      let dpb = (btc / dash)
+      let epb = (btc / eth)
+      let lpb = (btc / ltc)
+      // set state to calculated values
+      this.setState({
+        alt: {
+          dash: dpb,
+          eth: epb,
+          ltc: lpb
+        },
+        calculated: true,
+      })
+    }    
+  }
 
   // renderChart() {
   //   // render chart after alt per btc after it's been calculated
@@ -211,8 +211,7 @@ class App extends Component {
 
 
   render() {
-    // this.fetchData()
-    // this.calculateData()
+    this.calculateData()
     return (
       <Router>
         <div className="App">
