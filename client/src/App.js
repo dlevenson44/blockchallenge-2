@@ -139,6 +139,18 @@ class App extends Component {
           eur: res.data[5].result.XETHZEUR.c[0],
           eurLow: res.data[5].result.XETHZEUR.l[1],
           eurHigh: res.data[5].result.XETHZEUR.h[1]
+        },
+        ltc: {
+          trades:  res.data[7].result.XLTCZUSD.t[1],
+          oneHour: res.data[6][0].percent_change_1h,
+          oneDay: res.data[6][0].percent_change_24h,
+          oneWeek: res.data[6][0].percent_change_7d,
+          usd: res.data[6][0].price_usd,
+					usHigh: res.data[8].USDT_ETH.high24hr,
+					usLow: res.data[8].USDT_ETH.low24hr,
+          eur: res.data[7].result.XLTCZUSD.c[0],
+          eurLow: res.data[7].result.XLTCZUSD.l[1],
+          eurHigh: res.data[7].result.XLTCZUSD.h[1]
         }
       })
     })
