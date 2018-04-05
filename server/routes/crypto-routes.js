@@ -7,7 +7,7 @@ const cryptoHelpers = require('../services/crypto-helpers')
 const cryptoRouter = express.Router()
 
 // set routes to fetch and store API data
-// cryptoRouter.post('/crypto', cryptoController.create)
+cryptoRouter.post('/crypto/btc', cryptoController.createBtc)
 cryptoRouter.get('/crypto', cryptoHelpers.getData, cryptoController.sendApiData)
 
 module.exports = cryptoRouter;

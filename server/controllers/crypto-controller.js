@@ -16,18 +16,16 @@ cryptoController.latest = (req, res, next) => {
 }
 
 // send api data
-// for (let i = 0; i < 10; i ++) {  
 cryptoController.sendApiData = (req, res) => { 
     console.log(res.locals)         
     res.json({
         message: 'data returned for crypto',            
         data: res.locals.data
     })  
-    // }
 }
 
-// create new entry
-cryptoController.create = (req, res) => {
+// create new BTC entry
+cryptoController.createBtc = (req, res) => {
     console.log(req.body, ' req.body from cryptoController#create')
     Crypto.create({
         // time made
