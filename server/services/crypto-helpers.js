@@ -1,25 +1,28 @@
 require('isomorphic-fetch')
-const fetch = require('node-fetch')
 const db = require('../db/config')
-const async = require('async');
-const fs = require('fs')
 
 // list URLs
-const links = ['https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=XXBTZCAD', 'https://api.coinmarketcap.com/v1/ticker/dash/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=DASHEUR', 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=XETHZEUR', 'https://api.coinmarketcap.com/v1/ticker/litecoin/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=XLTCZUSD', 'https://poloniex.com/public?command=returnTicker' ]
+const links = ['https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=XXBTZCAD', 'https://api.coinmarketcap.com/v1/ticker/dash/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=DASHEUR', 'https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=XETHZEUR', 'https://api.coinmarketcap.com/v1/ticker/litecoin/?convert=USD', 'https://api.kraken.com/0/public/Ticker?pair=XLTCZUSD', 'https://poloniex.com/public?command=returnTicker']
 
+// hold fetched data
+const data = []
 
-function getData() {
-    for (let i = 0; i < links.length; i ++) { 
-        fetch(links[i])
-        .then(res => {
-            res.json().then(json => {
-                console.log(links[i], json)
-            })
-        })
-        .catch(err =>{
-            console.log(err)
-        })
-    }
+// get API data
+function getData(req, res, next) {
+    // map through links array
+    let promises = links.map(function(link) {
+        // run a function with each entry where we fetch the data
+        return fetch(link).then(res => res.json())
+    });
+    // wait for the map to finish, and then assign the results to res.locals
+    Promise.all(promises).then(results => {
+        // res.locals.data is an array of link json
+        res.locals.data = results;  
+        next();
+    }).catch(err => {
+        // error handler
+        res.status(500).json({err});
+    });
 }
 
 
