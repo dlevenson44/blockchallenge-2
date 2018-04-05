@@ -210,9 +210,9 @@ class App extends Component {
           <div>
             <Route exact path='/' render={() => <ChartController renderChart={this.renderChart()} /> } />
             <Route path='/bitcoin' render={() => <BtcController btc={this.state.btc} fetched={this.state.fetched} /> } />
-            <Route path='/dash' render={() => <DashController dash={this.state.dash} /> } />
-            <Route path='/ethereum' render={() => <EthController eth={this.state.eth} /> } />
-            <Route path='/litecoin' render={() => <LtcController ltc={this.state.ltc} /> } />
+            <Route path='/dash' render={() => <DashController dash={this.state.dash} fetched={this.state.fetched} /> } />
+            <Route path='/ethereum' render={() => <EthController eth={this.state.eth} fetched={this.state.fetched} /> } />
+            <Route path='/litecoin' render={() => <LtcController ltc={this.state.ltc} fetched={this.state.fetched} /> } />
             <Route path='/create' render={() => <CreateAddress /> } />
           </div>
         </div>
