@@ -1,7 +1,7 @@
 // import dependency
 import React, { Component } from 'react';
 
-class BtcController extends Component {
+class DashController extends Component {
     constructor(props) {
         super(props)
         // bind functions
@@ -60,4 +60,4 @@ class BtcController extends Component {
     }
 }
 
-export default BtcController
+export default DashController
