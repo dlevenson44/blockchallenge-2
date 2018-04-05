@@ -5,15 +5,15 @@ const Crypto = require('../models/Crypto')
 const cryptoController = {}
 
 // find latest cap coin entry
-cryptoController.latest = (req, res, next) => {
-    Crypto.findRecent()
-    .then(crypto => {
-        res.json({
-            message: 'retrieved entry',
-            data: { crypto }
-        })
-    }).catch(next)
-}
+// cryptoController.latest = (req, res, next) => {
+//     Crypto.findRecent()
+//     .then(crypto => {
+//         res.json({
+//             message: 'retrieved entry',
+//             data: { crypto }
+//         })
+//     }).catch(next)
+// }
 
 // send api data
 cryptoController.sendApiData = (req, res) => { 
