@@ -25,7 +25,7 @@ cryptoController.sendApiData = (req, res) => {
 }
 
 // create new BTC entry
-cryptoController.createBtc = (req, res) => {
+cryptoController.create = (req, res) => {
     console.log(req.body, ' req.body from cryptoController#create')
     Crypto.create({
         // time made
@@ -40,7 +40,7 @@ cryptoController.createBtc = (req, res) => {
         trades: req.body.trades,
         one_hour: req.body.one_hour,
         one_day: req.body.one_day,
-        seven_days: req.body.Seven_days,
+        one_week: req.body.one_week,
         crypto_id: req.body.crypto_id
     })
 }
