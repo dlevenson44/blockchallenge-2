@@ -4,12 +4,7 @@ import React, { Component } from 'react';
 class BtcController extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props)
-        this.state = {
-            posted: false,
-        }
         // bind functions
-        this.renderData = this.renderData.bind(this)
         this.sendToDb = this.sendToDb.bind(this)
     }
 
@@ -17,7 +12,7 @@ class BtcController extends Component {
         //  do not sent to DB until all API calls are ran, prevent 0 values from being entered
         console.log(this.props.fetched)
         if ((this.props.fetched === true)) {
-            fetch('/crypto/btc', {
+            fetch('/crypto', {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -41,29 +36,6 @@ class BtcController extends Component {
             // catch errors
             .catch(err => console.log(err))
         }
-    }
-
-    renderData() {
-        // wait for state to convert to string type to clean up
-        // if (typeof this.state.usd === 'string') {
-        // return(
-        //     <div className="crypto-container">
-            // <h5>Trends:</h5>
-            //     <p>{this.state.trades} trades in the last 24 hours</p>
-            //     <p>{this.state.oneHour}% change in last hour</p>
-            //     <p>{this.state.oneDay}% change in last 24 hours</p>
-            //     <p>{this.state.oneWeek}% change in last 7 days</p>                
-            // <h5>BTC US Market Info</h5>
-            //     <p>${(this.state.usd).substring(0, 8)} per BTC</p>
-            //     <p>${(this.state.usHigh).substring(0, 8)} is the 24 hour high</p>
-            //     <p>${(this.state.usLow).substring(0, 8)} is the 24 hour low</p>                            
-            // <h5>BTC EU Market Info</h5>
-            //     <p>€{(this.state.eur).substring(0, 8)} per BTC</p>
-            //     <p>€{(this.state.eurHigh).substring(0, 8)} is the 24 hour high</p>
-            //     <p>€{(this.state.eurLow).substring(0, 8)} is the 24 hour low</p>            
-        // </div>
-        // )
-        // } 
     }
 
     render() {
