@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Doughnut } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 
 class BtcChart extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class BtcChart extends Component {
               
         return(
             <div className="chart-container">
-                <Doughnut
+                <Bar
                 data={this.state.chartData}
                 options={{
 		            maintainAspectRatio: true,
