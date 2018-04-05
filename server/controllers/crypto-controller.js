@@ -16,13 +16,14 @@ cryptoController.latest = (req, res, next) => {
 }
 
 // send api data
-cryptoController.sendApiData = (req, res) => {
+// for (let i = 0; i < 10; i ++) {  
+cryptoController.sendApiData = (req, res) => { 
+    console.log(res.locals)         
     res.json({
-        message: 'data returned for crypto',
-        capCoin: res.locals.capCoin,
-        kraken: res.locals.kraken,
-        polo: res.locals.polo
-    })    
+        message: 'data returned for crypto',            
+        data: res.locals.data
+    })  
+    // }
 }
 
 // create new entry
